@@ -224,32 +224,66 @@ export default function PacientesScreen() {
           </View>
 
           {/* cards de estatísticas */}
-          <View style={[styles.statsRow, isMobile && styles.statsRowMobile]}>
+          {isMobile ? (
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.statsScroll}
+            >
 
-            {/* card de pacientes vinculados ao estagiário */}
-            <StatCard
-              icon="people-outline"
-              title="Vinculados"
-              value="5"
-              sub="Pacientes do estagiário"
-            />
+              {/* card de pacientes vinculados ao estagiário */}
+              <StatCard
+                icon="people-outline"
+                title="Vinculados"
+                value="5"
+                sub="Pacientes do estagiário"
+              />
 
-            {/* card de pacientes que estão em acompanhamento */}
-            <StatCard
-              icon="heart-outline"
-              title="Em acompanhamento"
-              value="3"
-              sub="Ativos no momento"
-            />
+              {/* card de pacientes que estão em acompanhamento */}
+              <StatCard
+                icon="heart-outline"
+                title="Em acompanhamento"
+                value="3"
+                sub="Ativos no momento"
+              />
 
-            {/* card de pacientes que precisam de mais atenção */}
-            <StatCard
-              icon="alert-circle-outline"
-              title="Em atenção"
-              value="1"
-              sub="Precisam de cuidado"
-            />
-          </View>
+              {/* card de pacientes que precisam de mais atenção */}
+              <StatCard
+                icon="alert-circle-outline"
+                title="Em atenção"
+                value="1"
+                sub="Precisam de cuidado"
+              />
+            </ScrollView>
+          ) : (
+
+            <View style={styles.statsRow}>
+
+              {/* card de pacientes vinculados ao estagiário */}
+              <StatCard
+                icon="people-outline"
+                title="Vinculados"
+                value="5"
+                sub="Pacientes do estagiário"
+              />
+
+              {/* card de pacientes que estão em acompanhamento */}
+              <StatCard
+                icon="heart-outline"
+                title="Em acompanhamento"
+                value="3"
+                sub="Ativos no momento"
+              />
+
+              {/* card de pacientes que precisam de mais atenção */}
+              <StatCard
+                icon="alert-circle-outline"
+                title="Em atenção"
+                value="1"
+                sub="Precisam de cuidado"
+              />
+            </View>
+          )}
 
           {/* card da lista de pacientes */}
           <View style={styles.listCard}>
@@ -344,7 +378,7 @@ export default function PacientesScreen() {
 
                 <TouchableOpacity
                   style={[styles.detailsButton, isMobile && styles.detailsButtonMobile]}
-                  onPress={() => router.push('/paciente-detalhe')}
+                  onPress={() => router.push('/paciente-detalhe-estagiario')}
                 >
                   <Ionicons name="eye-outline" size={16} color="#0C706E" />
                   <Text style={styles.detailsButtonText}>Ver detalhes</Text>
@@ -497,7 +531,7 @@ const styles = StyleSheet.create({
   },
 
   // item do menu
-  menuItem: {
+    menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 13,
@@ -630,6 +664,13 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#6B7C83',
     lineHeight: 18,
+  },
+
+  // scroll de rolagem para informações dos pacientess
+  statsScroll: {
+  paddingRight: 16,
+  gap: 12,
+  marginBottom: 12
   },
 
   // barra de pesquisa

@@ -1,46 +1,94 @@
 // arquivo app/reagendamento.tsx
+
 // tela de reagendamento seguindo o mesmo padrão visual das outras telas
 
+// importação principal do React, pois é necessário para criar componentes React Native.
 import React, { useState } from 'react';
 
+// componentes nativos do React são usados nesta tela
 import {
+  // usado para criar estilos na tela
   ScrollView,
+  // componente de texto
   StyleSheet,
+  // botão com clique e efeito ao toque
   Text,
+  // digitar as informações do paciente
   TextInput,
+  // componente base de estrutura e layout
   TouchableOpacity,
+  // hook que pega largura e altura da tela em tempo real
+  // usado para responsividade entre mobile e desktop 
   View,
   useWindowDimensions,
 } from 'react-native';
 
-// importando imagem
+// importa imagem para adicionar icones
 import { Image } from 'react-native';
 
+// biblioteca de ícones do Expo
+// usado para exibir ícones visuais na interface da tela
+import { Ionicons } from '@expo/vector-icons';
+
+// router pra navegação entre telas
 import { router } from 'expo-router';
 
+// componente de fundo degradê
+// usado para deixar o background mais moderno e suave
 import { LinearGradient } from 'expo-linear-gradient';
-
-import { Ionicons } from '@expo/vector-icons';
 
 import SelectField from '@/components/ui/selectField';
 
+// componente de calendário e seleção de data/hora
+// utilizado para abrir o calendário nativo do dispositivo
+import DateTimePicker from '@react-native-community/datetimepicker';
+
+// componente para aparecer o calendario no dispositivo mobile
+import { Platform } from 'react-native';
+
+// tela de reagendamento
 export default function ReagendamentoScreen() {
 
-  // largura da tela
+  // pega a largura da tela para adaptar no mobile e desktop
   const { width } = useWindowDimensions();
 
-  // verificando desktop
+  // se a tela for maior ou igual a 900, eu considero desktop
   const isDesktop = width >= 900;
 
-  // estados
+  // guarda o nome do paciente digitado
   const [paciente, setPaciente] = useState('');
+
+  // guarda a nova data digitada
   const [novaData, setNovaData] = useState('');
+
+  // novo horário da consulta
   const [novoHorario, setNovoHorario] = useState('');
+
+  // sala do paciente
   const [sala, setSala] = useState('');
+
+  // motivo do reagendamento
   const [motivo, setMotivo] = useState('');
 
-  return (
+    const [showDatePicker, setShowDatePicker] = useState(false);
+  
+    const [selectedDate, setSelectedDate] = useState(new Date());
+  
+    const onChangeDate = (event: any, selected?: Date) => {
+    setShowDatePicker(false);
+  
+    if (selected) {
+      setSelectedDate(selected);
+  
+      const formatted =
+        selected.toLocaleDateString('pt-BR');
+  
+      setNovaData(formatted);
+    }
+  };
 
+  return (
+    // Coloca um fundo com degradê suave pra dar um visual mais clean
     <LinearGradient
       colors={['#F7FCFA', '#EEF8F5', '#F9FCFB']}
       start={{ x: 0, y: 0 }}
@@ -59,162 +107,151 @@ export default function ReagendamentoScreen() {
       <View style={styles.page}>
 
         {/* sidebar desktop */}
-{isDesktop && (
-  <View style={styles.sidebar}>
+        {isDesktop && (
+          <View style={styles.sidebar}>
 
-    {/* logo */}
-    <View style={styles.logoBox}>
+            {/* logo */}
+            <View style={styles.logoBox}>
 
-      <Text style={styles.psi}>Ψ</Text>
+              <Text style={styles.psi}>Ψ</Text>
 
-      <View>
-        <Text style={styles.logoText}>SEP</Text>
+              <View>
+                <Text style={styles.logoText}>SEP</Text>
 
-        <Text style={styles.logoSub}>
-          Clínica de Psicologia
-        </Text>
+                <Text style={styles.logoSub}>
+                  Clínica de Psicologia
+                </Text>
+              </View>
+            </View>
+
+            {/* menu lateral */}
+            <View style={styles.menuArea}>
+
+              {/* administrador */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/acesso-administrador')}
+              >
+                <Image
+                  source={require('../assets/images/administrador.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Administrador</Text>
+              </TouchableOpacity>
+
+              {/* label */}
+              <Text style={styles.menuLabel}>GERENCIAMENTO</Text>
+
+              {/* agendamentos */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/calendario-administrador')}
+              >
+                <Image
+                  source={require('../assets/images/agendamento.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Agendamentos</Text>
+              </TouchableOpacity>
+
+              {/* pacientes */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/pacientes-administrador')}
+              >
+                <Image
+                  source={require('../assets/images/paciente.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Pacientes</Text>
+      </TouchableOpacity>
+
+          {/* salas */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => router.push('/salas-administrador')}
+          >
+            <Image
+              source={require('../assets/images/salas.png')}
+              style={styles.menuIcon}
+            />
+
+            <Text style={styles.menuText}>
+              Salas
+            </Text>
+          </TouchableOpacity>
+
+          {/* cancelamentos */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => router.push('/cancelamentos')}
+          >
+            <Image
+              source={require('../assets/images/cancelamento.png')}
+              style={styles.menuIcon}
+            />
+
+            <Text style={styles.menuText}>Cancelamentos</Text>
+          </TouchableOpacity>
+
+          {/* cadastrar estagiário */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => router.push('/cadastro-estagiario')}
+          >
+            <Image
+              source={require('../assets/images/estagiario.png')}
+              style={styles.menuIcon}
+            />
+
+            <Text style={styles.menuText}>Cadastrar Estagiário</Text>
+          </TouchableOpacity>
+
+                    {/* reagendamento ativo */}
+          <TouchableOpacity
+            style={[
+              styles.menuItem,
+              styles.menuActive,
+            ]}
+          >
+            {/* ícone do menu de reagendamento */}
+            <Ionicons
+              name="refresh-outline"
+              size={20}
+              color="#0C706E"
+            />
+
+            {/* texto do menu ativo */}
+            <Text
+              style={[
+                styles.menuText,
+                styles.menuTextActive,
+              ]}
+            >
+              Reagendamento
+            </Text>
+          </TouchableOpacity>
+
+          {/* perfil */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => router.push('/perfil-administrador')}
+          >
+            {/* ícone de perfil */}
+            <Image
+              source={require('../assets/images/perfil.png')}
+              style={styles.menuIcon}
+            />
+
+            {/* texto do menu perfil */}
+            <Text style={styles.menuText}>Perfil</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-
-    {/* menu lateral */}
-    <View style={styles.menuArea}>
-
-      {/* administrador */}
-      <TouchableOpacity
-        style={styles.menuItem}
-        onPress={() => router.push('/acesso-administrador')}
-      >
-        <Image
-          source={require('../assets/images/administrador.png')}
-          style={styles.menuIcon}
-        />
-
-        <Text style={styles.menuText}>
-          Administrador
-        </Text>
-      </TouchableOpacity>
-
-      {/* label */}
-      <Text style={styles.menuLabel}>
-        GERENCIAMENTO
-      </Text>
-
-      {/* agendamentos */}
-      <TouchableOpacity
-        style={styles.menuItem}
-        onPress={() => router.push('/calendario-administrador')}
-      >
-        <Image
-          source={require('../assets/images/agendamento.png')}
-          style={styles.menuIcon}
-        />
-
-        <Text style={styles.menuText}>
-          Agendamentos
-        </Text>
-      </TouchableOpacity>
-
-      {/* pacientes */}
-      <TouchableOpacity
-        style={styles.menuItem}
-        onPress={() => router.push('/pacientes-admin')}
-      >
-        <Image
-          source={require('../assets/images/paciente.png')}
-          style={styles.menuIcon}
-        />
-
-        <Text style={styles.menuText}>
-          Pacientes
-        </Text>
-      </TouchableOpacity>
-
-      {/* salas */}
-      <TouchableOpacity
-        style={styles.menuItem}
-        onPress={() => router.push('/salas-admin')}
-      >
-        <Image
-          source={require('../assets/images/salas.png')}
-          style={styles.menuIcon}
-        />
-
-        <Text style={styles.menuText}>
-          Salas
-        </Text>
-      </TouchableOpacity>
-
-      {/* cancelamentos */}
-      <TouchableOpacity
-        style={styles.menuItem}
-        onPress={() => router.push('/cancelamentos')}
-      >
-        <Image
-          source={require('../assets/images/cancelamento.png')}
-          style={styles.menuIcon}
-        />
-
-        <Text style={styles.menuText}>
-          Cancelamentos
-        </Text>
-      </TouchableOpacity>
-
-      {/* cadastrar estagiário */}
-      <TouchableOpacity
-        style={styles.menuItem}
-        onPress={() => router.push('/cadastro')}
-      >
-        <Image
-          source={require('../assets/images/estagiario.png')}
-          style={styles.menuIcon}
-        />
-
-        <Text style={styles.menuText}>
-          Cadastrar Estagiário
-        </Text>
-      </TouchableOpacity>
-
-      {/* reagendamento ativo */}
-      <TouchableOpacity
-        style={[
-          styles.menuItem,
-          styles.menuActive,
-        ]}
-      >
-        <Ionicons
-          name="refresh-outline"
-          size={20}
-          color="#0C706E"
-        />
-
-        <Text
-          style={[
-            styles.menuText,
-            styles.menuTextActive,
-          ]}
-        >
-          Reagendamento
-        </Text>
-      </TouchableOpacity>
-
-      {/* perfil */}
-      <TouchableOpacity
-        style={styles.menuItem}
-        onPress={() => router.push('/perfil-administrador')}
-      >
-        <Image
-          source={require('../assets/images/perfil.png')}
-          style={styles.menuIcon}
-        />
-
-        <Text style={styles.menuText}>
-          Perfil
-        </Text>
-      </TouchableOpacity>
-
-    </View>
-  </View>
-)}
+      )}
 
         {/* conteúdo */}
         <ScrollView
@@ -225,13 +262,11 @@ export default function ReagendamentoScreen() {
           {/* topo */}
           <View style={styles.header}>
 
-            <Text style={styles.title}>
-              Reagendamento
-            </Text>
+            {/* título principal da tela */}
+            <Text style={styles.title}>Reagendamento</Text>
 
-            <Text style={styles.subtitle}>
-              Atualize a data e horário do atendimento.
-            </Text>
+            {/* subtítulo explicativo */}
+            <Text style={styles.subtitle}>Atualize a data e horário do atendimento.</Text>
           </View>
 
           {/* card */}
@@ -240,6 +275,7 @@ export default function ReagendamentoScreen() {
             {/* header card */}
             <View style={styles.cardHeader}>
 
+              {/* ícone do card */}
               <View style={styles.cardIcon}>
                 <Ionicons
                   name="refresh-outline"
@@ -248,16 +284,15 @@ export default function ReagendamentoScreen() {
                 />
               </View>
 
+              {/* textos do cabeçalho */}
               <View>
-                <Text style={styles.cardTitle}>
-                  Dados do reagendamento
-                </Text>
 
-                <Text style={styles.cardSubtitle}>
-                  Escolha as novas informações da consulta
-                </Text>
+                {/* título do card */}
+                <Text style={styles.cardTitle}>Dados do reagendamento</Text>
+
+                {/* subtítulo do card */}
+                <Text style={styles.cardSubtitle}>Escolha as informações da consulta</Text>
               </View>
-
             </View>
 
             {/* grid */}
@@ -266,51 +301,74 @@ export default function ReagendamentoScreen() {
               isDesktop && styles.gridDesktop,
             ]}>
 
-              {/* paciente */}
-              <View style={[
-                styles.field,
-                isDesktop && styles.fieldDesktop,
-              ]}>
-                <SelectField
-                  label="Paciente *"
+              {/* campo do nome do paciente */}
+              <View style={[styles.field, isDesktop && styles.fieldDesktop]}>
+
+                {/* label do campo */}
+                <Text style={styles.label}>
+                  Paciente
+                </Text>
+
+                {/* input para digitar o nome */}
+                <TextInput
+                  style={styles.input}
+                  placeholder="Digite o nome do paciente"
+                  placeholderTextColor="#94A3B8"
                   value={paciente}
-                  onChange={setPaciente}
-                  placeholder="Selecione o paciente"
-                  options={[
-                    { label: 'Ana Silva', value: 'ana' },
-                    { label: 'Lucas Mendes', value: 'lucas' },
-                    { label: 'Maria Souza', value: 'maria' },
-                  ]}
+                  onChangeText={setPaciente}
                 />
               </View>
 
-              {/* data */}
-              <View style={[
-                styles.field,
-                isDesktop && styles.fieldDesktop,
-              ]}>
+              {/* campo de data do agendamento */}
+              <View style={[ styles.field, isDesktop && styles.fieldDesktop,]}>
 
-                <Text style={styles.label}>
-                  Nova data *
-                </Text>
+                {/* texto do label do campo */}
+                <Text style={styles.label}>Data</Text>
 
-                <View style={styles.inputBox}>
+                {/* verifica se está rodando na web */}
+                {Platform.OS === 'web' ? (
 
-                  <Ionicons
-                    name="calendar-outline"
-                    size={20}
-                    color="#7B8A96"
-                  />
+                  /* input simples de data para web */
+                  <TextInput style={styles.input} value={novaData} onChangeText={setNovaData} placeholder="dd/mm/aaaa"/>
 
-                  <TextInput
-                    style={styles.input}
-                    value={novaData}
-                    onChangeText={setNovaData}
-                    placeholder="15/06/2026"
-                    placeholderTextColor="#94A3B8"
-                  />
+                ) : (
+                  <>
 
-                </View>
+                    {/* botão que abre o calendário */}
+                    <TouchableOpacity
+                      style={styles.input}
+                      onPress={() => setShowDatePicker(true)}
+                    >
+
+                      {/* conteúdo interno do botão */}
+                      <View style={styles.input}>
+
+                        {/* ícone de calendário */}
+                        <Ionicons
+                          name="calendar-outline"
+                          size={18}
+                          color="#7E8D9B"
+                        />
+
+                        {/* texto exibindo a data selecionada */}
+                        <Text style={styles.dateText}>
+                          {novaData}
+                        </Text>
+
+                      </View>
+                    </TouchableOpacity>
+
+                    {/* exibe o calendário somente se showDatePicker for true */}
+                    {showDatePicker && (
+                      <DateTimePicker
+                        value={selectedDate}
+                        mode="date"
+                        display="default"
+                        onChange={onChangeDate}
+                      />
+                    )}
+                  </>
+                )}
               </View>
 
               {/* horário */}
@@ -318,16 +376,24 @@ export default function ReagendamentoScreen() {
                 styles.field,
                 isDesktop && styles.fieldDesktop,
               ]}>
+
+                {/* componente de seleção de horário */}
                 <SelectField
-                  label="Novo horário *"
+                  label="Novo horário "
                   value={novoHorario}
                   onChange={setNovoHorario}
-                  placeholder="14:00"
+                  placeholder="Selecione um novo horário"
                   options={[
                     { label: '08:00', value: '08:00' },
-                    { label: '10:00', value: '10:00' },
+                    { label: '09:00', value: '09:00' },
                     { label: '14:00', value: '14:00' },
+                    { label: '15:00', value: '15:00' },
                     { label: '16:00', value: '16:00' },
+                    { label: '17:00', value: '17:00' },
+                    { label: '18:00', value: '18:00' },
+                    { label: '19:00', value: '19:00' },
+                    { label: '20:00', value: '20:00' },
+                    { label: '21:00', value: '21:00' },
                   ]}
                 />
               </View>
@@ -337,15 +403,20 @@ export default function ReagendamentoScreen() {
                 styles.field,
                 isDesktop && styles.fieldDesktop,
               ]}>
+
+                {/* componente de seleção de sala */}
                 <SelectField
-                  label="Sala *"
+                  label="Sala "
                   value={sala}
                   onChange={setSala}
-                  placeholder="Sala 2"
+                  placeholder="Selecione uma nova sala"
                   options={[
                     { label: 'Sala 1', value: '1' },
                     { label: 'Sala 2', value: '2' },
-                    { label: 'Sala 3', value: '3' },
+                    { label: 'Sala 3', value: 'sala-3' },
+                    { label: 'Sala infantil', value: 'sala-infantil' },
+                    { label: 'Sala de grupos', value: 'sala-de-grupos' },
+                    { label: 'Sala de supervisão', value: 'sala-de-supervisao' },
                   ]}
                 />
               </View>
@@ -355,10 +426,10 @@ export default function ReagendamentoScreen() {
             {/* motivo */}
             <View style={styles.obsBox}>
 
-              <Text style={styles.label}>
-                Motivo do reagendamento
-              </Text>
-
+              {/* label do campo de motivo */}
+              <Text style={styles.label}>Motivo do reagendamento</Text>
+     
+              {/* campo de texto para observações do reagendamento */}
               <TextInput
                 style={styles.textArea}
                 value={motivo}
@@ -376,47 +447,50 @@ export default function ReagendamentoScreen() {
               !isDesktop && styles.buttonsMobile,
             ]}>
 
+              {/* botão cancelar */}
               <TouchableOpacity
                 style={styles.cancelButton}
                 onPress={() => router.back()}
               >
 
+                {/* ícone do botão cancelar */}
                 <Ionicons
                   name="close-outline"
                   size={20}
                   color="#60768A"
                 />
 
-                <Text style={styles.cancelText}>
-                  Cancelar
-                </Text>
+                {/* texto do botão cancelar */}
+                <Text style={styles.cancelText}>Cancelar</Text>
 
               </TouchableOpacity>
 
+              {/* botão principal */}
               <TouchableOpacity
                 style={styles.saveButton}
               >
 
+                {/* ícone de confirmação */}
                 <Ionicons
                   name="checkmark-outline"
                   size={20}
                   color="#FFFFFF"
                 />
 
-                <Text style={styles.saveText}>
-                  Salvar reagendamento
-                </Text>
+                {/* botão interno que salva o reagendamento */}
+                <TouchableOpacity
+                style={styles.saveButton}
+                onPress={() => router.push('/reagendamento-sucesso')}
+              >
 
+                {/* texto do botão salvar */}
+                <Text style={styles.saveText}>Salvar reagendamento</Text>
               </TouchableOpacity>
-
+              </TouchableOpacity>
             </View>
-
           </View>
-
-        </ScrollView>
-
+        </ScrollView>   
       </View>
-
     </LinearGradient>
   );
 }
@@ -452,17 +526,22 @@ function MenuItem({ icon, label, path, active }: any) {
   );
 }
 
+// criação centralizada dos estilos da tela
+// aqui ficam todas as estilizações da interface organizadas por sessão
 const styles = StyleSheet.create({
 
+    // fundo principal da tela
   background: {
     flex: 1,
   },
 
+  // estrutura principal da página
   page: {
     flex: 1,
     flexDirection: 'row',
   },
 
+  // sidebar lateral
   sidebar: {
     width: 270,
     backgroundColor: '#FFFFFF',
@@ -471,6 +550,7 @@ const styles = StyleSheet.create({
     paddingTop: 28,
   },
 
+  // área da logo
   logoBox: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -479,28 +559,33 @@ const styles = StyleSheet.create({
     marginBottom: 36,
   },
 
+  // símbolo psi da logo
   psi: {
     fontSize: 38,
     color: '#0C706E',
     fontWeight: '700',
   },
 
+  // texto principal da logo
   logoText: {
     fontSize: 24,
     color: '#17262F',
     fontWeight: '700',
   },
 
+  // subtítulo da logo
   logoSub: {
     fontSize: 12,
     color: '#70808A',
     marginTop: 2,
   },
 
+  // área do menu lateral
   menuArea: {
     paddingHorizontal: 16,
   },
 
+  // texto separador do menu
   menuLabel: {
     fontSize: 11,
     color: '#8A98A3',
@@ -511,6 +596,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
 
+  // item do menu lateral
   menuItem: {
     height: 50,
     borderRadius: 14,
@@ -521,43 +607,57 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
 
+  // estilo do item ativo do menu
   menuActive: {
     backgroundColor: '#E9F7F5',
   },
 
+  // texto do menu
   menuText: {
     fontSize: 15,
     color: '#70808A',
     fontWeight: '500',
   },
 
+  // texto do menu ativo
   menuTextActive: {
     color: '#0C706E',
     fontWeight: '600',
   },
 
+  // conteúdo rolável da tela
   scrollContent: {
     flexGrow: 1,
     paddingHorizontal: 28,
     paddingVertical: 42,
   },
 
+  // cabeçalho da página
   header: {
     marginBottom: 24,
   },
 
+  // título principal da página
   title: {
     fontSize: 32,
     color: '#17262F',
     fontWeight: '600',
   },
 
+  // subtítulo da página
   subtitle: {
     fontSize: 15,
     color: '#70808A',
     marginTop: 6,
   },
 
+  // texto da data
+  dateText: {
+    fontSize: 14,
+    color: '#17262F',
+  },
+
+  // card principal
   card: {
     backgroundColor: '#FFFFFF',
     borderRadius: 20,
@@ -566,6 +666,7 @@ const styles = StyleSheet.create({
     borderColor: '#DCEBE7',
   },
 
+  // cabeçalho do card
   cardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -573,6 +674,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
 
+  // ícone do card
   cardIcon: {
     width: 52,
     height: 52,
@@ -582,36 +684,55 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  // título do card
   cardTitle: {
     fontSize: 18,
     color: '#17262F',
     fontWeight: '600',
   },
 
+  // subtítulo do card
   cardSubtitle: {
     fontSize: 13,
     color: '#70808A',
     marginTop: 3,
   },
 
+  // grid principal
   grid: {
     gap: 14,
   },
 
+  // campo de digitação
+  input: {
+  height: 52,
+  borderWidth: 1,
+  borderColor: '#DCEBE7',
+  borderRadius: 14,
+  backgroundColor: '#FFFFFF',
+  paddingHorizontal: 14,
+  fontSize: 14,
+  color: '#17262F',
+  },
+
+  // grid no desktop
   gridDesktop: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
 
+  // campo padrão
   field: {
     width: '100%',
   },
 
+  // campo no desktop
   fieldDesktop: {
     width: '48.5%',
   },
 
+  // label dos campos
   label: {
     fontSize: 14,
     color: '#17262F',
@@ -619,6 +740,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 
+  // caixa do input com ícone
   inputBox: {
     height: 56,
     borderRadius: 14,
@@ -631,16 +753,12 @@ const styles = StyleSheet.create({
     gap: 10,
   },
 
-  input: {
-    flex: 1,
-    fontSize: 15,
-    color: '#17262F',
-  },
-
+  // área de observações
   obsBox: {
     marginTop: 18,
   },
 
+  // textarea de observações
   textArea: {
     minHeight: 120,
     borderRadius: 14,
@@ -653,6 +771,7 @@ const styles = StyleSheet.create({
     color: '#17262F',
   },
 
+  // linha dos botões
   buttonsRow: {
     marginTop: 26,
     flexDirection: 'row',
@@ -660,10 +779,12 @@ const styles = StyleSheet.create({
     gap: 12,
   },
 
+  // organização dos botões no mobile
   buttonsMobile: {
     flexDirection: 'column-reverse',
   },
 
+  // botão cancelar
   cancelButton: {
     minHeight: 52,
     borderRadius: 14,
@@ -677,12 +798,14 @@ const styles = StyleSheet.create({
     gap: 8,
   },
 
+  // texto do botão cancelar
   cancelText: {
     fontSize: 15,
     color: '#60768A',
     fontWeight: '500',
   },
 
+  // botão salvar
   saveButton: {
     minHeight: 52,
     borderRadius: 14,
@@ -694,12 +817,14 @@ const styles = StyleSheet.create({
     gap: 8,
   },
 
+  // texto do botão salvar
   saveText: {
     fontSize: 15,
     color: '#FFFFFF',
     fontWeight: '600',
   },
 
+  // círculo decorativo esquerdo
   decorCircleOne: {
     position: 'absolute',
     width: 280,
@@ -711,6 +836,7 @@ const styles = StyleSheet.create({
     top: 100,
   },
 
+  // círculo decorativo inferior direito
   decorCircleTwo: {
     position: 'absolute',
     width: 220,
@@ -722,6 +848,7 @@ const styles = StyleSheet.create({
     bottom: 90,
   },
 
+  // círculo decorativo superior direito
   decorCircleThree: {
     position: 'absolute',
     width: 160,
@@ -733,6 +860,7 @@ const styles = StyleSheet.create({
     top: 80,
   },
 
+  // bolinha decorativa superior
   decorDotOne: {
     position: 'absolute',
     width: 18,
@@ -743,6 +871,7 @@ const styles = StyleSheet.create({
     left: '52%',
   },
 
+  // bolinha decorativa inferior esquerda
   decorDotTwo: {
     position: 'absolute',
     width: 14,
@@ -753,6 +882,7 @@ const styles = StyleSheet.create({
     left: 80,
   },
 
+  // bolinha decorativa direita
   decorDotThree: {
     position: 'absolute',
     width: 12,
@@ -763,11 +893,11 @@ const styles = StyleSheet.create({
     right: 100,
   },
 
+  // ícone do menu lateral
   menuIcon: {
   width: 20,
   height: 20,
   resizeMode: 'contain',
   tintColor: '#0C706E',
-},
-
+  },
 });

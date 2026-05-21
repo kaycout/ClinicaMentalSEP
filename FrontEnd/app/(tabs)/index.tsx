@@ -278,31 +278,27 @@ export default function AgendaScreen() {
             </TouchableOpacity>
           </View>
 
-          {/* cards de estatísticas do dia */}
-          <View style={[styles.statsRow, isMobile && styles.statsRowMobile]}>
+          {isMobile ? (
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.statsScroll}
+          >
+            <View style={styles.statsRow}>
+              <StatCard icon="calendar-outline" value="12" label="Atendimentos" color="#EAF6F2" />
+              <StatCard icon="checkmark-done-outline" value="6" label="Confirmados" color="#E7F7EF" />
+              <StatCard icon="time-outline" value="3" label="Pendentes" color="#FFF5D6" />
+              <StatCard icon="alert-circle-outline" value="1" label="Faltas" color="#FFE8E8" />
+            </View>
+          </ScrollView>
+        ) : (
+          <View style={styles.statsRow}>
             <StatCard icon="calendar-outline" value="12" label="Atendimentos" color="#EAF6F2" />
             <StatCard icon="checkmark-done-outline" value="6" label="Confirmados" color="#E7F7EF" />
             <StatCard icon="time-outline" value="3" label="Pendentes" color="#FFF5D6" />
             <StatCard icon="alert-circle-outline" value="1" label="Faltas" color="#FFE8E8" />
           </View>
-
-          {/* filtros da agenda */}
-          <View style={[styles.filtersRow, isMobile && styles.filtersRowMobile]}>
-            <TouchableOpacity style={[styles.filterBox, isMobile && styles.filterBoxMobile]}>
-              <Text style={styles.filterText}>Minhas salas</Text>
-              <Ionicons name="chevron-down-outline" size={17} color="#64748B" />
-            </TouchableOpacity>
-
-            <TouchableOpacity style={[styles.filterBox, isMobile && styles.filterBoxMobile]}>
-              <Text style={styles.filterText}>Meus atendimentos</Text>
-              <Ionicons name="chevron-down-outline" size={17} color="#64748B" />
-            </TouchableOpacity>
-
-            <TouchableOpacity style={[styles.filterBox, isMobile && styles.filterBoxMobile]}>
-              <Text style={styles.filterText}>Status</Text>
-              <Ionicons name="chevron-down-outline" size={17} color="#64748B" />
-            </TouchableOpacity>
-          </View>
+        )}
 
           {/* card principal da lista de atendimentos */}
           <View style={styles.listCard}>
@@ -376,13 +372,6 @@ export default function AgendaScreen() {
 
                   // container que agrupa os botões de ação do atendimento
                     <View style={styles.actions}>
-                    {/* botão para visualizar detalhes completos do atendimento */}
-                      <TouchableOpacity style={styles.actionButton}>
-                        {/* ícone de visualização */}
-                        <Ionicons name="eye-outline" size={17} color="#0C706E" />
-                        {/* texto do botão */}
-                        <Text style={styles.actionText}>Detalhes</Text>
-                      </TouchableOpacity>
 
                       {/* botão de registro do atendimento */}
                       {/* muda aparência caso o status seja falta */}
@@ -455,7 +444,7 @@ export default function AgendaScreen() {
             {/* rodapé da lista, essa mensagem aparece no final dos agendamentos do dia */}
             <View style={styles.footerInfo}>
               <Text style={styles.footerInfoText}>
-                Exibindo somente atendimentos vinculados ao estagiário.
+                Exibe somente atendimentos vinculados ao estagiário.
               </Text>
             </View>
           </View>
@@ -523,18 +512,18 @@ const styles = StyleSheet.create({
 
   // fundo principal da tela
   // ocupa toda a altura disponível
-  background: {
+    background: {
     flex: 1,
   },
 
   // camada decorativa absoluta usada para os círculos do fundo
-  backgroundDecor: {
+    backgroundDecor: {
     ...StyleSheet.absoluteFillObject,
     overflow: 'hidden',
   },
 
   // primeiro círculo decorativo do fundo
-  blurCircleOne: {
+    blurCircleOne: {
     position: 'absolute',
     width: 420,
     height: 420,
@@ -545,7 +534,7 @@ const styles = StyleSheet.create({
   },
 
   // segundo círculo decorativo do fundo
-  blurCircleTwo: {
+    blurCircleTwo: {
     position: 'absolute',
     width: 520,
     height: 520,
@@ -556,7 +545,7 @@ const styles = StyleSheet.create({
   },
 
   // terceiro círculo decorativo do fundo
-  blurCircleThree: {
+    blurCircleThree: {
     position: 'absolute',
     width: 300,
     height: 300,
@@ -568,14 +557,14 @@ const styles = StyleSheet.create({
 
   // estrutura principal da página
   // divide sidebar e conteúdo
-  screen: {
+    screen: {
     flex: 1,
     flexDirection: 'row',
     backgroundColor: 'transparent',
   },
 
   // menu lateral do desktop
-  sidebar: {
+    sidebar: {
     width: 245,
     backgroundColor: '#FFFFFF',
     borderRightWidth: 1,
@@ -583,7 +572,7 @@ const styles = StyleSheet.create({
   },
 
   // área da logo da clínica
-  logoBox: {
+    logoBox: {
     height: 118,
     backgroundColor: '#0C706E',
     flexDirection: 'row',
@@ -594,33 +583,33 @@ const styles = StyleSheet.create({
   },
 
   // símbolo psi da logo
-  psi: {
+    psi: {
     fontSize: 50,
     color: '#FFFFFF',
     fontWeight: '700',
   },
 
   // texto principal da logo
-  logoText: {
+    logoText: {
     fontSize: 30,
     color: '#FFFFFF',
     fontWeight: '700',
   },
 
   // subtítulo da logo
-  logoSub: {
+    logoSub: {
     fontSize: 12,
     color: '#EAF6F2',
     marginTop: 2,
   },
 
   // container dos itens do menu
-  menuArea: {
+    menuArea: {
     paddingTop: 18,
   },
 
   // botão padrão do menu lateral
-  menuItem: {
+    menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 13,
@@ -632,37 +621,37 @@ const styles = StyleSheet.create({
   },
 
   // estilo do item ativo do menu
-  menuActive: {
+    menuActive: {
     backgroundColor: '#EAF6F2',
   },
 
   // texto padrão do menu
-  menuText: {
+    menuText: {
     fontSize: 15,
     color: '#4B5F68',
     fontWeight: '400',
   },
 
   // texto do item ativo
-  menuTextActive: {
+    menuTextActive: {
     color: '#0C706E',
     fontWeight: '600',
   },
 
   // conteúdo principal da tela
-  content: {
+    content: {
     flex: 1,
     paddingHorizontal: 34,
     paddingTop: 30,
   },
 
   // espaçamento inferior do scroll
-  contentContainer: {
+    contentContainer: {
     paddingBottom: 34,
   },
 
   // ajustes específicos do mobile
-  contentMobile: {
+    contentMobile: {
     paddingHorizontal: 16,
     paddingTop: 48,
   },
@@ -674,6 +663,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginBottom: 22,
     gap: 18,
+  },
+
+  // scroll com as informações no mobile
+  statsScroll: {
+  paddingRight: 20,
   },
 
   // versão mobile do topo
@@ -688,35 +682,36 @@ const styles = StyleSheet.create({
   },
 
   // título principal da página
-  pageTitle: {
+    pageTitle: {
     fontSize: 30,
     fontWeight: '600',
     color: '#152322',
     marginBottom: 6,
+    marginTop: 2
   },
 
   // subtítulo explicativo da página
-  pageSubtitle: {
+    pageSubtitle: {
     fontSize: 15,
     color: '#6B7C83',
     lineHeight: 21,
   },
 
   // lado direito do header desktop
-  topRight: {
+    topRight: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
   },
 
   // navegação de datas
-  dateNavigation: {
+    dateNavigation: {
     flexDirection: 'row',
     alignItems: 'center',
   },
 
   // botão das setas da data
-  dateButton: {
+    dateButton: {
     width: 42,
     height: 48,
     backgroundColor: '#FFFFFF',
@@ -727,14 +722,14 @@ const styles = StyleSheet.create({
   },
 
   // linha dos botões superiores
-  buttonsRow: {
+    buttonsRow: {
     flexDirection: 'row',
     gap: 12,
     alignItems: 'center',
   },
 
   // caixa central da data
-  dateBox: {
+    dateBox: {
     width: 185,
     height: 48,
     backgroundColor: '#FFFFFF',
@@ -746,21 +741,21 @@ const styles = StyleSheet.create({
   },
 
   // texto principal da data
-  dateText: {
+    dateText: {
     fontSize: 14,
     fontWeight: '600',
     color: '#152322',
   },
 
   // subtítulo da data
-  dateSub: {
+    dateSub: {
     fontSize: 12,
     color: '#6B7C83',
     marginTop: 2,
   },
 
   // botão "Hoje"
-  todayButton: {
+    todayButton: {
     height: 46,
     paddingHorizontal: 17,
     backgroundColor: '#FFFFFF',
@@ -771,13 +766,13 @@ const styles = StyleSheet.create({
   },
 
   // texto do botão hoje
-  todayText: {
+    todayText: {
     fontWeight: '500',
     color: '#152322',
   },
 
   // botão de notificações
-  notificationButton: {
+    notificationButton: {
     width: 46,
     height: 46,
     borderRadius: 23,
@@ -789,14 +784,14 @@ const styles = StyleSheet.create({
   },
 
   // área de dados do usuário
-  userBox: {
+    userBox: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 11,
   },
 
   // avatar circular do usuário
-  avatarUser: {
+    avatarUser: {
     width: 43,
     height: 43,
     borderRadius: 22,
@@ -806,27 +801,27 @@ const styles = StyleSheet.create({
   },
 
   // texto das iniciais do avatar
-  avatarUserText: {
+    avatarUserText: {
     fontWeight: '600',
     color: '#0C706E',
   },
 
   // nome do usuário
-  userName: {
+    userName: {
     fontSize: 15,
     fontWeight: '600',
     color: '#152322',
   },
 
   // cargo do usuário
-  userRole: {
+    userRole: {
     fontSize: 12,
     color: '#6B7C83',
     marginTop: 2,
   },
 
   // caixa de data no mobile
-  mobileDateBox: {
+    mobileDateBox: {
     minHeight: 58,
     backgroundColor: '#FFFFFF',
     borderRadius: 16,
@@ -838,7 +833,7 @@ const styles = StyleSheet.create({
   },
 
   // botão lateral da data no mobile
-  mobileDateArrow: {
+    mobileDateArrow: {
     width: 48,
     height: 58,
     justifyContent: 'center',
@@ -846,51 +841,51 @@ const styles = StyleSheet.create({
   },
 
   // área central da data no mobile
-  mobileDateCenter: {
+    mobileDateCenter: {
     flex: 1,
     alignItems: 'center',
   },
 
   // texto principal da data mobile
-  mobileDateText: {
+    mobileDateText: {
     fontSize: 14,
     fontWeight: '600',
     color: '#152322',
   },
 
   // subtítulo da data mobile
-  mobileDateSub: {
+    mobileDateSub: {
     fontSize: 12,
     color: '#6B7C83',
     marginTop: 2,
   },
 
   // botão ocupa largura total no mobile
-  newButtonMobile: {
+    newButtonMobile: {
     width: '100%',
   },
 
   // texto do botão novo agendamento
-  newButtonText: {
+    newButtonText: {
     color: '#FFFFFF',
     fontSize: 15,
     fontWeight: '600',
   },
 
   // linha dos cards de estatísticas
-  statsRow: {
+    statsRow: {
     flexDirection: 'row',
     gap: 12,
     marginBottom: 18,
   },
 
   // estatísticas em coluna no mobile
-  statsRowMobile: {
+    statsRowMobile: {
     flexDirection: 'column',
   },
 
   // card individual de estatística
-  statCard: {
+    statCard: {
     flex: 1,
     minHeight: 76,
     backgroundColor: '#FFFFFF',
@@ -904,7 +899,7 @@ const styles = StyleSheet.create({
   },
 
   // círculo do ícone da estatística
-  statIcon: {
+    statIcon: {
     width: 44,
     height: 44,
     borderRadius: 22,
@@ -913,34 +908,34 @@ const styles = StyleSheet.create({
   },
 
   // valor numérico da estatística
-  statValue: {
+    statValue: {
     fontSize: 22,
     fontWeight: '600',
     color: '#152322',
   },
 
   // descrição da estatística
-  statLabel: {
+    statLabel: {
     fontSize: 12,
     color: '#6B7C83',
     marginTop: 2,
   },
 
     // linha dos filtros da agenda
-  filtersRow: {
+    filtersRow: {
     flexDirection: 'row',
     gap: 12,
     marginBottom: 18,
   },
 
   // filtros organizados em coluna no mobile
-  filtersRowMobile: {
+    filtersRowMobile: {
     flexDirection: 'column',
     gap: 10,
   },
 
   // caixa individual de filtro
-  filterBox: {
+    filterBox: {
     width: 215,
     height: 46,
     borderWidth: 1,
@@ -954,19 +949,19 @@ const styles = StyleSheet.create({
   },
 
   // filtro ocupa largura total no mobile
-  filterBoxMobile: {
+    filterBoxMobile: {
     width: '100%',
   },
 
   // texto do filtro
-  filterText: {
+    filterText: {
     fontSize: 13,
     fontWeight: '400',
     color: '#4B5F68',
   },
 
   // card principal da agenda
-  listCard: {
+    listCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: 18,
     overflow: 'hidden',
@@ -975,7 +970,7 @@ const styles = StyleSheet.create({
   },
 
   // cabeçalho do card da agenda
-  listHeader: {
+    listHeader: {
     minHeight: 70,
     backgroundColor: '#EAF6F2',
     justifyContent: 'space-between',
@@ -987,21 +982,21 @@ const styles = StyleSheet.create({
   },
 
   // título da lista
-  listTitle: {
+    listTitle: {
     fontSize: 18,
     fontWeight: '600',
     color: '#0C706E',
   },
 
   // subtítulo da lista
-  listSubtitle: {
+    listSubtitle: {
     fontSize: 12,
     color: '#6B7C83',
     marginTop: 2,
   },
 
   // badge de permissão do usuário
-  permissionBadge: {
+    permissionBadge: {
     minHeight: 32,
     borderRadius: 18,
     backgroundColor: '#FFFFFF',
@@ -1014,14 +1009,14 @@ const styles = StyleSheet.create({
   },
 
   // texto da permissão
-  permissionText: {
+    permissionText: {
     fontSize: 12,
     fontWeight: '500',
     color: '#0C706E',
   },
 
   // linha individual do atendimento
-  appointmentRow: {
+    appointmentRow: {
     minHeight: 112,
     borderBottomWidth: 1,
     borderBottomColor: '#EEF2F1',
@@ -1034,7 +1029,7 @@ const styles = StyleSheet.create({
   },
 
   // versão mobile do atendimento
-  appointmentRowMobile: {
+    appointmentRowMobile: {
     flexDirection: 'column',
     alignItems: 'flex-start',
     gap: 10,
@@ -1043,7 +1038,7 @@ const styles = StyleSheet.create({
   },
 
   // barra lateral colorida do status
-  leftBar: {
+    leftBar: {
     position: 'absolute',
     left: 0,
     top: 18,
@@ -1054,31 +1049,31 @@ const styles = StyleSheet.create({
   },
 
   // caixa do horário
-  timeBox: {
+    timeBox: {
     width: 82,
   },
 
   // horário ocupa largura total no mobile
-  timeBoxMobile: {
+    timeBoxMobile: {
     width: '100%',
   },
 
   // horário principal
-  time: {
+    time: {
     fontSize: 23,
     fontWeight: '600',
     color: '#0C706E',
   },
 
   // subtítulo do horário
-  timeSub: {
+    timeSub: {
     fontSize: 12,
     color: '#6B7C83',
     marginTop: 2,
   },
 
   // avatar do paciente
-  avatar: {
+    avatar: {
     width: 52,
     height: 52,
     borderRadius: 26,
@@ -1088,31 +1083,31 @@ const styles = StyleSheet.create({
   },
 
   // texto do avatar
-  avatarText: {
+    avatarText: {
     fontSize: 16,
     fontWeight: '600',
     color: '#0C706E',
   },
 
   // caixa de dados do paciente
-  patientBox: {
+    patientBox: {
     width: 225,
   },
 
   // dados do paciente no mobile
-  patientBoxMobile: {
+    patientBoxMobile: {
     width: '100%',
   },
 
   // nome do paciente
-  patientName: {
+    patientName: {
     fontSize: 16,
     fontWeight: '600',
     color: '#152322',
   },
 
   // informações secundárias do paciente
-  patientMeta: {
+    patientMeta: {
     fontSize: 12,
     color: '#5B6D75',
     marginTop: 3,
@@ -1120,32 +1115,32 @@ const styles = StyleSheet.create({
   },
 
   // área de profissional e sala
-  infoBox: {
+    infoBox: {
     width: 175,
     gap: 7,
   },
 
   // informações ocupam largura total no mobile
-  infoBoxMobile: {
+    infoBoxMobile: {
     width: '100%',
     marginTop: 2,
   },
 
   // linha individual de informação
-  infoLine: {
+    infoLine: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
   },
 
   // texto das informações
-  infoText: {
+    infoText: {
     fontSize: 13,
     color: '#4B5F68',
   },
 
   // badge de status do atendimento
-  statusBadge: {
+    statusBadge: {
     minHeight: 32,
     borderRadius: 18,
     paddingHorizontal: 11,
@@ -1157,32 +1152,32 @@ const styles = StyleSheet.create({
   },
 
   // cor do status confirmado
-  confirmedBadge: {
+    confirmedBadge: {
     backgroundColor: '#E3F7EE',
   },
 
   // cor do status pendente
-  pendingBadge: {
+    pendingBadge: {
     backgroundColor: '#FFF3CC',
   },
 
   // cor do status remarcado
-  rescheduledBadge: {
+    rescheduledBadge: {
     backgroundColor: '#E0F2F8',
   },
 
   // cor do status falta
-  missedBadge: {
+    missedBadge: {
     backgroundColor: '#FFE5E5',
   },
 
   // cor do status cancelado
-  canceledBadge: {
+    canceledBadge: {
     backgroundColor: '#EEF2F3',
   },
 
   // texto do status
-  statusText: {
+    statusText: {
     fontSize: 12,
     fontWeight: '500',
   },
@@ -1268,6 +1263,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8FCFA',
     paddingHorizontal: 18,
     justifyContent: 'center',
+     flexShrink: 1,
+    flexWrap: 'wrap',
   },
 
   // texto do rodapé

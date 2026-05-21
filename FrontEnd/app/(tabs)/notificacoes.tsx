@@ -166,43 +166,90 @@ export default function NotificacoesScreen() {
           </View>
 
           {/* cards de resumo */}
-          <View style={[styles.summaryGrid, isDesktop && styles.summaryGridDesktop]}>
-            {/* total */}
-            <View style={styles.summaryCard}>
-              <View style={styles.summaryIcon}>
-                <Ionicons name="mail-outline" size={22} color="#087A73" />
+          {!isDesktop ? (
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.summaryScroll}
+            >
+
+              {/* total */}
+              <View style={styles.summaryCard}>
+                <View style={styles.summaryIcon}>
+                  <Ionicons name="mail-outline" size={22} color="#087A73" />
+                </View>
+
+                <View>
+                  <Text style={styles.summaryValue}>4</Text>
+                  <Text style={styles.summaryLabel}>Total</Text>
+                </View>
               </View>
 
-              <View>
-                <Text style={styles.summaryValue}>4</Text>
-                <Text style={styles.summaryLabel}>Total</Text>
+              {/* pendentes */}
+              <View style={styles.summaryCard}>
+                <View style={styles.summaryIconYellow}>
+                  <Ionicons name="time-outline" size={22} color="#C47F00" />
+                </View>
+
+                <View>
+                  <Text style={styles.summaryValue}>1</Text>
+                  <Text style={styles.summaryLabel}>Pendentes</Text>
+                </View>
+              </View>
+
+              {/* importantes */}
+              <View style={styles.summaryCard}>
+                <View style={styles.summaryIconRed}>
+                  <Ionicons name="alert-circle-outline" size={22} color="#E03131" />
+                </View>
+
+                <View>
+                  <Text style={styles.summaryValue}>2</Text>
+                  <Text style={styles.summaryLabel}>Importantes</Text>
+                </View>
+              </View>
+            </ScrollView>
+          ) : (
+
+            <View style={[styles.summaryGrid, styles.summaryGridDesktop]}>
+
+              {/* total */}
+              <View style={styles.summaryCard}>
+                <View style={styles.summaryIcon}>
+                  <Ionicons name="mail-outline" size={22} color="#087A73" />
+                </View>
+
+                <View>
+                  <Text style={styles.summaryValue}>4</Text>
+                  <Text style={styles.summaryLabel}>Total</Text>
+                </View>
+              </View>
+
+              {/* pendentes */}
+              <View style={styles.summaryCard}>
+                <View style={styles.summaryIconYellow}>
+                  <Ionicons name="time-outline" size={22} color="#C47F00" />
+                </View>
+
+                <View>
+                  <Text style={styles.summaryValue}>1</Text>
+                  <Text style={styles.summaryLabel}>Pendentes</Text>
+                </View>
+              </View>
+
+              {/* importantes */}
+              <View style={styles.summaryCard}>
+                <View style={styles.summaryIconRed}>
+                  <Ionicons name="alert-circle-outline" size={22} color="#E03131" />
+                </View>
+
+                <View>
+                  <Text style={styles.summaryValue}>2</Text>
+                  <Text style={styles.summaryLabel}>Importantes</Text>
+                </View>
               </View>
             </View>
-
-            {/* pendentes */}
-            <View style={styles.summaryCard}>
-              <View style={styles.summaryIconYellow}>
-                <Ionicons name="time-outline" size={22} color="#C47F00" />
-              </View>
-
-              <View>
-                <Text style={styles.summaryValue}>1</Text>
-                <Text style={styles.summaryLabel}>Pendentes</Text>
-              </View>
-            </View>
-
-            {/* importantes */}
-            <View style={styles.summaryCard}>
-              <View style={styles.summaryIconRed}>
-                <Ionicons name="alert-circle-outline" size={22} color="#E03131" />
-              </View>
-
-              <View>
-                <Text style={styles.summaryValue}>2</Text>
-                <Text style={styles.summaryLabel}>Importantes</Text>
-              </View>
-            </View>
-          </View>
+          )}
 
           {/* box principal das notificações */}
           <View style={styles.noticeBox}>
@@ -525,6 +572,13 @@ const styles = StyleSheet.create({
     color: '#17262F',
     fontWeight: '600',
   },
+
+  // informações de notificações em rolagem
+  summaryScroll: {
+    paddingRight: 16,
+    gap: 12,
+    marginBottom: 20,
+    },
 
   // box principal onde ficam os avisos
   noticeBox: {

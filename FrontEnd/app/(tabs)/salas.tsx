@@ -3,20 +3,36 @@
 
 import React from 'react';
 
+// componentes nativos do React são usados nesta tela
 import {
+  // barra de rolagem na tela
   ScrollView,
+  // usado para criar estilos na tela
   StyleSheet,
+  // componente de texto
+  // componente de botão deslizante usado para ativar ou desativar opções
   Text,
-  View,
+  // botão com clique e efeito ao toque
   TouchableOpacity,
+  // componente base de estrutura e layout
+  View,
+  // hook que pega largura e altura da tela em tempo real
+  // usado para responsividade entre mobile e desktop 
   useWindowDimensions,
+
 } from 'react-native';
 
-import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+// router pra navegação entre telas
 import { router } from 'expo-router';
 
-// salas simuladas
+// importa icones para adicionar ao sidebar
+import { Ionicons } from '@expo/vector-icons';
+
+// componente de fundo degradê
+// usado para deixar o background mais moderno e suave
+import { LinearGradient } from 'expo-linear-gradient';
+
+// hook de salas apenas para exemplo
 const salas = [
   { nome: 'Sala 1', status: 'Livre', horario: '08:00 - 09:00' },
   { nome: 'Sala 2', status: 'Ocupada', horario: '09:00 - 10:00' },
@@ -36,18 +52,24 @@ const menuItems = [
   ['person-outline', 'Perfil', '/(tabs)/perfil'],
 ];
 
+// tela de salas para estagiario
 export default function SalasScreen() {
+
+  // pegando largura da tela pra responsividade
   const { width } = useWindowDimensions();
+
+  // considera se é mobile quando a tela é menor que 900
   const isMobile = width < 900;
 
   return (
+    // Coloca um fundo com degradê suave pra dar um visual mais clean
     <LinearGradient
       colors={['#F4FBF8', '#EAF6F1', '#F8FCFA']}
       style={styles.background}
     >
       <View style={styles.page}>
 
-        {/* SIDEBAR (ESTAGIÁRIO) */}
+        {/* sidebar estagiario */}
         {!isMobile && (
           <View style={styles.sidebar}>
 
@@ -64,24 +86,15 @@ export default function SalasScreen() {
             <View style={styles.menuArea}>
               {menuItems.map(([icon, label, path]) => (
                 <TouchableOpacity
-                  key={label}
-                  style={[
-                    styles.menuItem,
-                    label === 'Salas' && styles.menuActive,
-                  ]}
+                  key={label}style={[styles.menuItem, label === 'Salas' && styles.menuActive,]} 
                   onPress={() => router.push(path as any)}
                 >
                   <Ionicons
-                    name={icon as any}
-                    size={20}
-                    color={label === 'Salas' ? '#0C706E' : '#70808A'}
+                    name={icon as any} size={20} color={label === 'Salas' ? '#0C706E' : '#70808A'}
                   />
 
                   <Text
-                    style={[
-                      styles.menuText,
-                      label === 'Salas' && styles.menuTextActive,
-                    ]}
+                    style={[ styles.menuText, label === 'Salas' && styles.menuTextActive,]}
                   >
                     {label}
                   </Text>
@@ -91,26 +104,23 @@ export default function SalasScreen() {
           </View>
         )}
 
-        {/* CONTEÚDO */}
+        {/* conteudo */}
         <ScrollView
           style={styles.scroll}
           contentContainerStyle={styles.content}
           showsVerticalScrollIndicator={false}
         >
 
-          {/* HEADER */}
+          {/* header */}
           <View style={styles.header}>
             <View>
-              <Text style={styles.title}>Salas da clínica</Text>
-              <Text style={styles.subtitle}>
-                Visualização das salas (acesso de estagiário)
+              <Text style={styles.title}>Salas da clínica</Text> 
+              <Text style={styles.subtitle}> Visualização das salas (acesso de estagiário)
               </Text>
             </View>
-
-            {/* ❌ REMOVIDO: botão Nova sala */}
           </View>
 
-          {/* CARDS */}
+          {/* cards */}
           <View style={[styles.cardsWrap, !isMobile && styles.cardsWrapDesktop]}>
             {salas.map((sala, index) => (
               <View key={index} style={[styles.card, !isMobile && styles.cardDesktop]}>
@@ -145,31 +155,34 @@ export default function SalasScreen() {
 
                 {/* ação somente visual */}
                 <TouchableOpacity style={styles.detailsButton}>
-                  <Ionicons name="eye-outline" size={16} color="#0C706E" />
-                  <Text style={styles.detailsText}>Ver detalhes</Text>
-                </TouchableOpacity>
-
-              </View>
+                <Text style={styles.detailsText}>Ver detalhes</Text>
+              </TouchableOpacity>
+            </View>
             ))}
           </View>
-
         </ScrollView>
       </View>
     </LinearGradient>
   );
 }
 
+// criação centralizada dos estilos da tela
+// aqui ficam todas as estilizações da interface organizadas por seção
 const styles = StyleSheet.create({
 
+   // fundo principal da tela
+  // ocupa toda a altura disponível
   background: {
     flex: 1,
   },
 
+  // estrutura geral da página
   page: {
     flex: 1,
     flexDirection: 'row',
   },
 
+  // sidebar
   sidebar: {
     width: 245,
     backgroundColor: '#FFFFFF',
@@ -177,6 +190,7 @@ const styles = StyleSheet.create({
     borderRightColor: '#E6ECEA',
   },
 
+  // logo da clinica
   logoBox: {
     height: 118,
     backgroundColor: '#0C706E',
@@ -187,28 +201,33 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 18,
   },
 
+  // simbolo da pscologia
   psi: {
     fontSize: 50,
     color: '#FFFFFF',
     fontWeight: '700',
   },
 
+  // texto sep
   logoText: {
     fontSize: 30,
     color: '#FFFFFF',
     fontWeight: '700',
   },
 
+  // subtitulo
   logoSub: {
     fontSize: 12,
     color: '#EAF6F2',
     marginTop: 2,
   },
 
+  // área menu
   menuArea: {
     paddingTop: 18,
   },
 
+  // item menu
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -220,56 +239,67 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
 
+  // item ativo
   menuActive: {
     backgroundColor: '#EAF6F2',
   },
 
+  // texto menu
   menuText: {
     fontSize: 15,
     color: '#4B5F68',
     fontWeight: '400',
   },
 
+  // texto ativo
   menuTextActive: {
     color: '#0C706E',
     fontWeight: '600',
   },
 
+  // rolagem da tela
   scroll: {
     flex: 1,
   },
 
+  // área principal onde fica todo o conteúdo da tela
   content: {
     paddingHorizontal: 34,
     paddingTop: 48,
     paddingBottom: 28,
   },
 
+  // cabecalho da tela
   header: {
     marginBottom: 24,
   },
 
+  // título principal da página
   title: {
     fontSize: 28,
     fontWeight: '600',
     color: '#152322',
   },
 
+  // subtítulo exibido abaixo do título principal
   subtitle: {
     fontSize: 14,
     color: '#6B7C83',
     marginTop: 4,
   },
 
+  // área que organiza todos os cards
   cardsWrap: {
     gap: 12,
   },
 
+  // organização dos cards no desktop
   cardsWrapDesktop: {
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
 
+  // card principal de informações
   card: {
     width: '100%',
     backgroundColor: '#FFFFFF',
@@ -279,10 +309,12 @@ const styles = StyleSheet.create({
     borderColor: '#E0E9E6',
   },
 
+  // largura dos cards no desktop
   cardDesktop: {
     width: '48.5%',
   },
 
+  // cabeçalho do card
   cardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -290,11 +322,13 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
 
+  // título exibido dentro do card
   cardTitle: {
     fontSize: 16,
     fontWeight: '600',
   },
 
+  // linha que organiza horário e ícones
   timeRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -302,11 +336,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
+  // subtítulo ou descrição do card
   cardSubtitle: {
     fontSize: 13,
     color: '#64748B',
   },
 
+  // badge de status do card
   badge: {
     alignSelf: 'flex-start',
     paddingHorizontal: 10,
@@ -315,41 +351,45 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
 
+  // cor da badge quando está disponível
   badgeFree: {
     backgroundColor: '#E3F7EE',
   },
 
+  // cor da badge quando está ocupada
   badgeBusy: {
     backgroundColor: '#FFE5E5',
   },
 
+  // texto padrão da badge
   badgeText: {
     fontSize: 12,
     fontWeight: '500',
   },
 
+  // cor do texto da badge disponível
   badgeTextFree: {
     color: '#0C706E',
   },
 
+  // cor do texto da badge ocupada
   badgeTextBusy: {
     color: '#B91C1C',
   },
 
+  // botão para visualizar detalhes
   detailsButton: {
-    height: 40,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#0C706E',
-    flexDirection: 'row',
-    alignItems: 'center',
+    height: 42,
+    borderRadius: 12,
+    backgroundColor: '#EAF6F2',
     justifyContent: 'center',
-    gap: 6,
+    alignItems: 'center',
   },
 
+  // texto do botão de detalhes
   detailsText: {
-    fontSize: 13,
-    color: '#0C706E',
-    fontWeight: '500',
+    color: '#087A73',
+    fontSize: 14,
+    fontWeight: '600',
   },
 });

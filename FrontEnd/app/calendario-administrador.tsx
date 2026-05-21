@@ -303,7 +303,7 @@ export default function AdminCalendarScreen() {
               {/* acesso à lista de pacientes cadastrados */}
               <TouchableOpacity
                 style={styles.menuItem}
-                onPress={() => router.push('/pacientes-admin')}
+                onPress={() => router.push('/pacientes-administrador')}
               >
                 <Image
                   source={require('../assets/images/paciente.png')}
@@ -319,7 +319,7 @@ export default function AdminCalendarScreen() {
               {/* gerenciamento das salas disponíveis */}
               <TouchableOpacity
                 style={styles.menuItem}
-                onPress={() => router.push('/salas-admin')}
+                onPress={() => router.push('/salas-administrador')}
               >
                 <Image
                   source={require('../assets/images/salas.png')}
@@ -351,7 +351,7 @@ export default function AdminCalendarScreen() {
               {/* rota para criação de novos estagiários */}
               <TouchableOpacity
                 style={styles.menuItem}
-                onPress={() => router.push('/cadastro')}
+                onPress={() => router.push('/cadastro-estagiario')}
               >
                 <Image
                   source={require('../assets/images/estagiario.png')}
@@ -604,7 +604,7 @@ export default function AdminCalendarScreen() {
               {!isDesktop && (
                 <TouchableOpacity
                   style={styles.newButtonMobile}
-                  onPress={() => router.push('/novo-agendamento')}
+                  onPress={() => router.push('/novo-agendamento-administrador')}
                 >
                   <Ionicons name="add-outline" size={20} color="#FFFFFF" />
                 </TouchableOpacity>
@@ -826,7 +826,7 @@ const styles = StyleSheet.create({
     right: 110,
   },
 
-  // header da tela
+  // cabeça~ho da tela
   header: {
     marginBottom: 24,
     flexDirection: 'row',
@@ -834,7 +834,7 @@ const styles = StyleSheet.create({
     gap: 14,
   },
 
-  // header mobile
+  // cabeçalho da tela no mobile
   headerMobile: {
     marginTop: 18,
     alignItems: 'flex-start',
@@ -852,7 +852,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  // texto do header
+  // texto do cabeçalho
   headerTextBox: {
     flex: 1,
   },

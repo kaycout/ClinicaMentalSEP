@@ -1,7 +1,4 @@
-// arquivo app/(tabs)/perfil.tsx
-
-// importação principal do React, pois é necessário para criar componentes React Native.
-import React from 'react';
+// arquivo app/(admin)/perfil-administrador.tsx
 
 // componentes nativos do React são usados nesta tela
 import {
@@ -18,7 +15,8 @@ import {
   // hook que pega largura e altura da tela em tempo real
   // usado para responsividade entre mobile e desktop 
   useWindowDimensions,
-
+  // importa imagens de icones para colocar no sidebar
+  Image,
 } from 'react-native';
 
 // biblioteca de ícones do Expo
@@ -26,26 +24,14 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 
 // hook de navegação
-import { useRouter } from 'expo-router';
+import { router } from 'expo-router';
 
 // componente de fundo degradê
 // usado para deixar o background mais moderno e suave
 import { LinearGradient } from 'expo-linear-gradient';
 
-// menu lateral do desktop, apenas no desktop, no mobile a navegação é diferente.
-// lista de navegação principal da aplicação
-const menuItems = [
-  ['calendar-outline', 'Agenda', '/(tabs)'],
-  ['people-outline', 'Pacientes', '/(tabs)/pacientes'],
-  ['business-outline', 'Salas', '/(tabs)/salas'],
-  ['notifications-outline', 'Notificacoes', '/(tabs)/notificacoes'],
-  ['person-outline', 'Perfil', '/(tabs)/perfil'],
-];
-
-// pega largura da tela para aplicar responsividade
+// pega a largura da tela para aplicar responsividade
 export default function PerfilScreen() {
-  // hook pra navegação entre telas
-  const router = useRouter();
 
   // define se é mobile ou desktop baseado na largura da tela
   const { width } = useWindowDimensions();
@@ -59,19 +45,22 @@ export default function PerfilScreen() {
       colors={['#F4FBF8', '#EAF6F1', '#F8FCFA']}
       style={styles.background}
     >
-      {/* fundo com bolas */}
+
+      {/* círculos decorativos */}
       <View style={styles.backgroundDecor}>
         <View style={styles.blurCircleOne} />
         <View style={styles.blurCircleTwo} />
         <View style={styles.blurCircleThree} />
       </View>
 
+      {/* estrutura principal */}
       <View style={styles.screen}>
+
         {/* sidebar desktop */}
         {isDesktop && (
           <View style={styles.sidebar}>
 
-            {/* logo da clínica */}
+            {/* logo da clinica */}
             <View style={styles.logoBox}>
               <Text style={styles.psiSidebar}>Ψ</Text>
 
@@ -83,32 +72,104 @@ export default function PerfilScreen() {
 
             {/* área do menu lateral */}
             <View style={styles.menuArea}>
-              {menuItems.map(([icon, label, path]) => (
-                <TouchableOpacity
-                  key={label}
-                  style={[
-                    styles.menuItem,
-                    label === 'Perfil' && styles.menuActive,
-                  ]}
-                  onPress={() => router.push(path as any)}
-                >
-                  <Ionicons
-                    name={icon as any}
-                    size={20}
-                    color={label === 'Perfil' ? '#0C706E' : '#70808A'}
-                  />
 
-                  <Text
-                    style={[
-                      styles.menuText,
-                      label === 'Perfil' && styles.menuTextActive,
-                    ]}
-                  >
-                    {label}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>       
+              {/* administrador */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/acesso-administrador')}
+              >
+                <Image
+                  source={require('../../assets/images/administrador.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Administrador</Text>
+              </TouchableOpacity>
+
+              {/* label */}
+              <Text style={styles.menuLabel}>GERENCIAMENTO</Text>
+
+              {/* agendamentos */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/calendario-administrador')}
+              >
+                <Image
+                  source={require('../../assets/images/agendamento.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Agendamentos</Text>
+              </TouchableOpacity>
+
+              {/* pacientes */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/pacientes-administrador')}
+              >
+                <Image
+                  source={require('../../assets/images/paciente.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Pacientes</Text>
+              </TouchableOpacity>
+
+              {/* salas */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/salas-administrador')}
+              >
+                <Image
+                  source={require('../../assets/images/salas.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Salas</Text>
+              </TouchableOpacity>
+
+              {/* cancelamentos */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/cancelamentos')}
+              >
+                <Image
+                  source={require('../../assets/images/cancelamento.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Cancelamentos</Text>
+              </TouchableOpacity>
+
+              {/* cadastrar estagiário */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/cadastro-estagiario')}
+              >
+                <Image
+                  source={require('../../assets/images/estagiario.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Cadastrar Estagiário</Text>
+              </TouchableOpacity>
+
+              {/* perfil ativo */}
+              <TouchableOpacity
+                style={[
+                  styles.menuItem,
+                  styles.menuActive,
+                ]}
+              >
+                <Image
+                  source={require('../../assets/images/perfil.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text
+                  style={[styles.menuText, styles.menuTextActive,]}>Perfil</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         )}
 
@@ -124,19 +185,19 @@ export default function PerfilScreen() {
 
             {/* área da logo da clínica */}
             <View style={styles.logoArea}>
-              <Text style={styles.psiCard}>Ψ</Text>
+              <Text style={styles.psi}>Ψ</Text>
 
               {/* conteúdo da logo */}
               <View>
-                <Text style={styles.logoTextCard}>SEP</Text>
-                <Text style={styles.logoSubCard}>CLÍNICA DE PSICOLOGIA</Text>
+                <Text style={styles.logoText}>SEP</Text>
+                <Text style={styles.logoSubtitle}>CLÍNICA DE PSICOLOGIA</Text>
               </View>
             </View>
 
-            {/* título da página */}
+            {/* título da pagina */}
             <Text style={styles.title}>Perfil do Usuário</Text>
 
-            {/* subtítulo da página */}
+            {/* subtítulo da pagina */}
             <Text style={styles.subtitle}>Informações da conta do estagiário</Text>
 
             {/* card de informações do usuário */}
@@ -153,19 +214,25 @@ export default function PerfilScreen() {
                 {/* bloco do nome */}
                 <View style={styles.infoBlock}>
                   <Text style={styles.label}>Nome</Text>
-                  <Text style={styles.value}>Paulo Oliveira</Text>
+                  <Text style={styles.value}>
+                    Paulo Oliveira
+                  </Text>
                 </View>
 
-                {/* bloco do perfil de estagiario */}
+                {/* bloco do perfil de administrador */}
                 <View style={styles.infoBlock}>
                   <Text style={styles.label}>Perfil</Text>
-                  <Text style={styles.value}>Estagiário</Text>
+                  <Text style={styles.value}>
+                  Administrador
+                  </Text>
                 </View>
 
                 {/* bloco do e-mail */}
                 <View style={styles.infoBlock}>
                   <Text style={styles.label}>E-mail</Text>
-                  <Text style={styles.value}>paulo@sep.com</Text>
+                  <Text style={styles.value}>
+                    paulo@sep.com
+                  </Text>
                 </View>
 
                 {/* bloco da função */}
@@ -178,7 +245,7 @@ export default function PerfilScreen() {
               </View>
             </View>
 
-            {/* card de acesso */}
+            {/* card acesso */}
             <View style={styles.accessCard}>
 
               {/* cabeçalho do card de acesso */}
@@ -197,10 +264,11 @@ export default function PerfilScreen() {
                     router.replace('/login');
                   }}
                 >
-                  <Ionicons name="log-out-outline" size={20} color="#FFFFFF" />
+                  <Ionicons
+                    name="log-out-outline" size={20} color="#FFFFFF"/>
 
                   <Text style={styles.logoutText}>Sair da Conta</Text>
-                </TouchableOpacity>      
+                </TouchableOpacity>
               </View>
             </View>
           </View>
@@ -210,23 +278,21 @@ export default function PerfilScreen() {
   );
 }
 
-// criação centralizada dos estilos da tela
-// aqui ficam todas as estilizações da interface organizadas por seção
+// estilos da tela
 const styles = StyleSheet.create({
 
-  // fundo principal da tela
-  // ocupa toda a altura disponível
+  // fundo geral
   background: {
     flex: 1,
   },
 
-  // fundo decorativo da tela
+  // decoração do fundo
   backgroundDecor: {
     ...StyleSheet.absoluteFillObject,
     overflow: 'hidden',
   },
 
-    // círculo decorativo superior esquerdo
+  // círculo decorativo
   blurCircleOne: {
     position: 'absolute',
     width: 420,
@@ -237,7 +303,7 @@ const styles = StyleSheet.create({
     left: -120,
   },
 
-  // círculo decorativo inferior direito
+  // círculo decorativo
   blurCircleTwo: {
     position: 'absolute',
     width: 520,
@@ -248,7 +314,7 @@ const styles = StyleSheet.create({
     bottom: -160,
   },
 
-  // círculo decorativo central
+  // círculo decorativo
   blurCircleThree: {
     position: 'absolute',
     width: 300,
@@ -259,93 +325,110 @@ const styles = StyleSheet.create({
     top: 120,
   },
 
-  // área principal da tela
+  // estrutura principal
   screen: {
     flex: 1,
     flexDirection: 'row',
   },
 
-  // menu lateral
+  // sidebar
   sidebar: {
-    width: 245,
+    width: 270,
     backgroundColor: '#FFFFFF',
     borderRightWidth: 1,
-    borderRightColor: '#E6ECEA',
+    borderRightColor: '#DCEBE7',
+    paddingTop: 28,
   },
 
-  // área da logo
+  // logo sidebar
   logoBox: {
-    height: 118,
-    backgroundColor: '#0C706E',
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 12,
     paddingHorizontal: 24,
-    gap: 10,
-    borderBottomRightRadius: 18,
+    marginBottom: 36,
   },
 
-  // símbolo da psicologia
+  // símbolo psi
   psiSidebar: {
-    fontSize: 50,
-    color: '#FFFFFF',
+    fontSize: 38,
+    color: '#0C706E',
     fontWeight: '700',
   },
 
-  // texto principal da logo
+  // texto sep
   logoTextSidebar: {
-    fontSize: 30,
-    color: '#FFFFFF',
+    fontSize: 24,
+    color: '#17262F',
     fontWeight: '700',
   },
 
-  // subtítulo da logo
+  // subtítulo sidebar
   logoSubSidebar: {
     fontSize: 12,
-    color: '#EAF6F2',
+    color: '#70808A',
     marginTop: 2,
   },
 
-  // área do menu
+  // área menu
   menuArea: {
-    paddingTop: 18,
+    paddingHorizontal: 16,
   },
 
-  // item do menu
+  // label menu
+  menuLabel: {
+    fontSize: 11,
+    color: '#8A98A3',
+    fontWeight: '600',
+    marginTop: 14,
+    marginBottom: 10,
+    marginLeft: 12,
+    letterSpacing: 1,
+  },
+
+  // item menu
   menuItem: {
+    height: 50,
+    borderRadius: 14,
+    paddingHorizontal: 14,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 13,
-    paddingVertical: 14,
-    paddingHorizontal: 18,
-    marginHorizontal: 12,
-    borderRadius: 12,
-    marginTop: 4,
+    gap: 12,
+    marginBottom: 6,
   },
 
-  // item ativo do menu
+  // item ativo
   menuActive: {
-    backgroundColor: '#EAF6F2',
+    backgroundColor: '#E9F7F5',
   },
 
-  // texto do menu
+  // ícone menu
+  menuIcon: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
+    tintColor: '#0C706E',
+  },
+
+  // texto menu
   menuText: {
     fontSize: 15,
-    color: '#4B5F68',
-    fontWeight: '400',
+    color: '#70808A',
+    fontWeight: '500',
   },
 
-  // texto do menu ativo
+  // texto ativo
   menuTextActive: {
     color: '#0C706E',
     fontWeight: '600',
   },
 
-  // conteúdo principal
+  // conteúdo
   content: {
     flex: 1,
   },
 
-  // área de conteúdo da rolagem
+  // scroll
   scrollContent: {
     flexGrow: 1,
     justifyContent: 'center',
@@ -353,7 +436,7 @@ const styles = StyleSheet.create({
     paddingVertical: 28,
   },
 
-  // card principal da tela
+  // card principal
   card: {
     width: '100%',
     backgroundColor: '#FFFFFF',
@@ -367,19 +450,19 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
 
-  // largura máxima do card no desktop
+  // card desktop
   cardDesktop: {
     maxWidth: 520,
     alignSelf: 'center',
   },
 
-  // espaçamento reduzido do card no mobile
+  // card mobile
   cardMobile: {
     paddingHorizontal: 12,
     paddingVertical: 12,
   },
 
-  // área da logo
+  // logo central
   logoArea: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -388,36 +471,34 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
 
-  // símbolo psi da logo
-  psiCard: { 
+  // símbolo psi
+  psi: { 
     fontSize: 60, 
     color: '#0C706E', 
     fontWeight: '700' 
   },
 
-  // texto principal da logo
-  logoTextCard: { 
+  logoText: { 
     fontSize: 28, 
     fontWeight: '900',
     color: '#0C706E' 
   },
 
-  // subtítulo da logo
-  logoSubCard: {
+  logoSubtitle: {
     fontSize: 11,
     fontWeight: '500',
     color: '#0C706E',
     letterSpacing: 0.4,
   },
 
-  // ajuste do subtítulo da logo no desktop
-  logoSubDesktop: {
+  // subtitulo no desktop
+  logoSubtitleDesktop: {
     fontSize: 12,
     marginBottom: 0,
     textAlign: 'left',
   },
 
-  // título da página
+  // título
   title: {
     textAlign: 'center',
     fontSize: 22,
@@ -426,7 +507,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 
-  // subtítulo da página
+  // subtítulo
   subtitle: {
     textAlign: 'center',
     fontSize: 14,
@@ -434,7 +515,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
 
-  // card de informação
+  // card informações
   infoCard: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
@@ -444,32 +525,32 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
 
-  // cabeçalho do card de informação
+  // cabeçalho informações
   infoHeader: {
     backgroundColor: '#EAF6F2',
     paddingHorizontal: 20,
     paddingVertical: 16,
   },
 
-  // texto do cabeçalho de informação
+  // texto cabeçalho
   infoHeaderText: {
     color: '#0C706E',
     fontSize: 16,
     fontWeight: '500',
   },
 
-  // corpo do card de informação
+  // corpo informações
   infoBody: {
     paddingHorizontal: 20,
     paddingVertical: 18,
   },
 
-  // bloco de informação
+  // bloco individual
   infoBlock: {
     marginBottom: 14,
   },
 
-  // label da informação
+  // label
   label: {
     fontSize: 11,
     fontWeight: '400',
@@ -478,14 +559,14 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
 
-  // valor da informação
+  // valor
   value: {
     fontSize: 15,
     fontWeight: '400',
     color: '#1E3A38',
   },
 
-  // card de acesso
+  // card acesso
   accessCard: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
@@ -494,27 +575,27 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 
-  // cabeçalho do card de acesso
+  // cabeçalho acesso
   accessHeader: {
     backgroundColor: '#EAF6F2',
     paddingHorizontal: 20,
     paddingVertical: 16,
   },
 
-  // texto do cabeçalho de acesso
+  // texto cabeçalho
   accessHeaderText: {
     color: '#0C706E',
     fontSize: 16,
     fontWeight: '500',
   },
 
-  // corpo do card de acesso
+  // corpo acesso
   accessBody: {
     paddingHorizontal: 20,
     paddingVertical: 18,
   },
 
-  // botão de sair da conta
+  // botão sair
   logoutButton: {
     height: 48,
     backgroundColor: '#0C706E',
@@ -525,10 +606,11 @@ const styles = StyleSheet.create({
     gap: 8,
   },
 
-  // texto do botão de sair
+  // texto sair
   logoutText: {
     color: '#FFFFFF',
     fontSize: 15,
     fontWeight: '500',
   },
-  });
+
+});

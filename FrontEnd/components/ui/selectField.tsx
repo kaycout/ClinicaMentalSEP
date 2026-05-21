@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/components/clinic-ui';
 
@@ -29,27 +30,52 @@ export default function SelectField({
   options,
   onChange,
 }: SelectFieldProps) {
+
   const [open, setOpen] = useState(false);
 
   const selectedLabel = useMemo(() => {
-    return options.find((item) => item.value === value)?.label || placeholder;
+    return (
+      options.find((item) => item.value === value)?.label ||
+      placeholder
+    );
   }, [options, value, placeholder]);
 
   return (
-    <View style={styles.fieldBlock}>
-      <Text style={styles.label}>{label}</Text>
+    <View
+      style={[
+        styles.fieldBlock,
+        open && styles.fieldBlockOpen,
+      ]}
+    >
+
+      <Text style={styles.label}>
+        {label}
+      </Text>
 
       <TouchableOpacity
         activeOpacity={0.85}
-        style={[styles.selectButton, open && styles.selectButtonOpen]}
+        style={[
+          styles.selectButton,
+          open && styles.selectButtonOpen,
+        ]}
         onPress={() => setOpen(!open)}
       >
-        <Text style={[styles.selectText, !value && styles.placeholder]}>
+
+        <Text
+          style={[
+            styles.selectText,
+            !value && styles.placeholder,
+          ]}
+        >
           {selectedLabel}
         </Text>
 
         <Ionicons
-          name={open ? 'chevron-up-outline' : 'chevron-down-outline'}
+          name={
+            open
+              ? 'chevron-up-outline'
+              : 'chevron-down-outline'
+          }
           size={20}
           color={COLORS.muted}
         />
@@ -57,34 +83,42 @@ export default function SelectField({
 
       {open && (
         <View style={styles.dropdown}>
+
           <ScrollView
             style={styles.scrollArea}
             nestedScrollEnabled
-            showsVerticalScrollIndicator={true}
+            showsVerticalScrollIndicator
           >
+
             {options.map((item) => {
-              const isSelected = item.value === value;
+
+              const isSelected =
+                item.value === value;
 
               return (
                 <TouchableOpacity
                   key={item.value}
                   style={[
                     styles.optionItem,
-                    isSelected && styles.optionItemSelected,
+                    isSelected &&
+                      styles.optionItemSelected,
                   ]}
                   onPress={() => {
                     onChange(item.value);
                     setOpen(false);
                   }}
                 >
+
                   <Text
                     style={[
                       styles.optionText,
-                      isSelected && styles.optionTextSelected,
+                      isSelected &&
+                        styles.optionTextSelected,
                     ]}
                   >
                     {item.label}
                   </Text>
+
                 </TouchableOpacity>
               );
             })}
@@ -96,63 +130,97 @@ export default function SelectField({
 }
 
 const styles = StyleSheet.create({
+
   fieldBlock: {
     marginBottom: 14,
+    position: 'relative',
+     overflow: 'visible',
   },
+
+  fieldBlockOpen: {
+  marginBottom: 220,
+  },
+
+  fieldBlockActive: {
+    zIndex: 999999,
+  },
+
   label: {
-    fontSize: 15,
-    fontWeight: '700',
-    color: COLORS.text,
-    marginBottom: 8,
+  fontSize: 14,
+  color: '#17262F',
+  marginBottom: 8,
+  fontWeight: '500',
   },
+
   selectButton: {
-    minHeight: 56,
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: '#D7E5E1',
-    backgroundColor: '#FFFFFF',
-    paddingHorizontal: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  height: 52,
+  borderWidth: 1,
+  borderColor: '#DCEBE7',
+  borderRadius: 14,
+  backgroundColor: '#FFFFFF',
+  paddingHorizontal: 14,
+
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
   },
+
   selectButtonOpen: {
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
     borderColor: '#BFD6CF',
   },
+
   selectText: {
-    fontSize: 16,
-    color: COLORS.text,
-    flex: 1,
+  fontSize: 14,
+  color: '#17262F',
+  flex: 1,
   },
+
   placeholder: {
-    color: COLORS.muted,
+  color: '#94A3B8',
   },
+
   dropdown: {
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderTopWidth: 0,
-    borderColor: '#BFD6CF',
-    borderBottomLeftRadius: 14,
-    borderBottomRightRadius: 14,
-    overflow: 'hidden',
+  position: 'absolute',
+  top: 70,
+  marginTop: 6,
+  left: 0,
+  right: 0,
+
+  zIndex: 999999,
+
+  backgroundColor: '#FFFFFF',
+  borderWidth: 1,
+  borderColor: '#DCEBE7',
+  borderRadius: 14,
+
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 4,
   },
+  shadowOpacity: 0.08,
+  shadowRadius: 8,
+  },
+
   scrollArea: {
     maxHeight: 180,
   },
+
   optionItem: {
     paddingVertical: 14,
     paddingHorizontal: 16,
     backgroundColor: '#FFFFFF',
   },
+
   optionItemSelected: {
     backgroundColor: '#F2F8F6',
   },
+
   optionText: {
     fontSize: 16,
     color: COLORS.text,
   },
+
   optionTextSelected: {
     fontWeight: '700',
   },
