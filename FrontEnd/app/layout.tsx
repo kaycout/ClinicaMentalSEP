@@ -1,9 +1,23 @@
 import { Stack } from 'expo-router';
+
 // aqui eu importo a barra de status do celular
 import { StatusBar } from 'expo-status-bar';
 
+// import do useEffect para executar funções quando o app abrir
+import { useEffect } from 'react';
+
+// import da função responsável pelas notificações
+import { registerForPushNotificationsAsync } from '../services/notifications';
+
+
 // esse é o layout principal do app, onde eu organizo todas as rotas da pasta app
 export default function RootLayout() {
+
+  // quando o app iniciar, ele vai pedir permissão de notificação
+  useEffect(() => {
+    registerForPushNotificationsAsync();
+  }, []);
+
   return (
     <>
       {/* aqui eu deixo o index como primeira tela, porque o index é o meu login */}

@@ -1,0 +1,17 @@
+# Expo
+.expo/
+**/.expo/
+FrontEnd/.expo/
+
+# Node
+node_modules/
+
+# build
+dist/
+
+# cache web
+**/web/cache/
+
+# sistema
+.DS_Store
+Thumbs.db
