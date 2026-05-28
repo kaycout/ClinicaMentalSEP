@@ -158,13 +158,24 @@ export default function SalasAdminScreen() {
 
               <TouchableOpacity
                 style={styles.menuItem}
+                onPress={() => router.push('/relatorio-atendimentos')}
+              >
+                <Image
+                  source={require('../../assets/images/relatorio2.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Relatório Atendimentos</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.menuItem}
                 onPress={() => router.push('/perfil-administrador')}
               >
                 <Image
                   source={require('../../assets/images/perfil.png')}
                   style={styles.menuIcon}
                 />
-
                 <Text style={styles.menuText}>Perfil</Text>
               </TouchableOpacity>
             </View>
@@ -193,12 +204,6 @@ export default function SalasAdminScreen() {
 
               <Text style={styles.subtitle}>Gerencie disponibilidade, ocupação e horários das salas.</Text>
             </View>
-
-            {isDesktop && (
-              <TouchableOpacity style={styles.newButton}>
-                <Text style={styles.newButtonText}>+ Nova sala</Text>
-              </TouchableOpacity>
-            )}
           </View>
 
           {/* pesquisa */}

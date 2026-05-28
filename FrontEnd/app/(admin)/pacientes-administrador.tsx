@@ -231,6 +231,23 @@ export default function PacientesAdminScreen() {
             Cadastrar Estagiário
           </Text>
         </TouchableOpacity>
+        
+        {/* item do menu: relatório de atendimentos */}
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => router.push('/relatorio-atendimentos')}
+        >
+          {/* ícone de relatório */}
+          <Image
+            source={require('../../assets/images/relatorio2.png')}
+            style={styles.menuIcon}
+          />
+
+          {/* texto do item relatório */}
+          <Text style={styles.menuText}>
+            Relatório Atendimentos
+          </Text>
+        </TouchableOpacity>
 
         {/* item do menu: perfil */}
         <TouchableOpacity
@@ -283,17 +300,6 @@ export default function PacientesAdminScreen() {
                 Visualize informações dos pacientes cadastrados e consultas agendadas.
               </Text>
             </View>
-
-            {/* botão de novo paciente só aparece no desktop */}
-            {isDesktop && (
-              <TouchableOpacity
-                style={styles.newButton}
-              >
-                <Text style={styles.newButtonText}>
-                  + Novo paciente
-                </Text>
-              </TouchableOpacity>
-            )}
           </View>
 
           {/* barra de pesquisa */}

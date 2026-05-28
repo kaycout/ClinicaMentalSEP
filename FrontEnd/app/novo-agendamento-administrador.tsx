@@ -71,6 +71,12 @@ export default function NovoAgendamentoAdministradorScreen() {
   // guarda o nome do estagiário digitado
   const [estagiario, setEstagiario] = useState('');
 
+  // guarda a idade digitada
+  const [idade, setIdade] = useState('');
+
+  // guarda o responsável
+  const [responsavel, setResponsavel] = useState('');
+
   // armazena o horário escolhido para o atendimento
   const [horario, setHorario] = useState('');
 
@@ -208,6 +214,23 @@ export default function NovoAgendamentoAdministradorScreen() {
           <Text style={styles.menuText}>Cadastrar Estagiário</Text>
         </TouchableOpacity>
 
+        {/* item do menu: relatório de atendimentos */}
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => router.push('/relatorio-atendimentos')}
+        >
+          {/* ícone de relatório */}
+          <Image
+            source={require('../assets/images/relatorio2.png')}
+            style={styles.menuIcon}
+          />
+
+          {/* texto do item relatório */}
+          <Text style={styles.menuText}>
+            Relatório Atendimentos
+          </Text>
+        </TouchableOpacity>
+        
         {/* perfil */}
         <TouchableOpacity
           style={styles.menuItem}
@@ -287,6 +310,54 @@ export default function NovoAgendamentoAdministradorScreen() {
                 placeholder="Digite o nome do estagiário"
                 placeholderTextColor="#94A3B8" value={estagiario} onChangeText={setEstagiario} />
             </View>
+
+            {/* idade do paciente */}
+            <View
+              style={[
+                styles.field,
+                isDesktop && styles.fieldDesktop,
+              ]}
+            >
+
+              {/* label */}
+              <Text style={styles.label}>
+                Idade
+              </Text>
+
+              {/* campo idade */}
+              <TextInput
+                style={styles.input}
+                placeholder="Digite a idade"
+                placeholderTextColor="#94A3B8"
+                keyboardType="numeric"
+                value={idade}
+                onChangeText={setIdade}
+              />
+            </View>
+
+            {/* responsavel */}
+            {Number(idade) < 16 && idade !== '' && (
+
+              <View
+                style={[
+                  styles.field,
+                  isDesktop && styles.fieldDesktop,
+                ]}
+              >
+
+                {/* label */}
+                <Text style={styles.label}>Responsável</Text>
+
+                {/* campo responsável */}
+                <TextInput
+                  style={styles.input}
+                  placeholder="Digite o nome do responsável"
+                  placeholderTextColor="#94A3B8"
+                  value={responsavel}
+                  onChangeText={setResponsavel}
+                />
+              </View>
+            )}
 
             {/* sala */}
             <View

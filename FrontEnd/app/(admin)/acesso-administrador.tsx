@@ -183,6 +183,23 @@ export default function AdminDashboardScreen() {
                 </Text>
               </TouchableOpacity>
 
+              {/* item do menu: relatório de atendimentos */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/relatorio-atendimentos')}
+              >
+                {/* ícone de relatório */}
+                <Image
+                  source={require('../../assets/images/relatorio2.png')}
+                  style={styles.menuIcon}
+                />
+
+                {/* texto do item relatório */}
+                <Text style={styles.menuText}>
+                  Relatório Atendimentos
+                </Text>
+              </TouchableOpacity>
+
               {/* item do menu: perfil */}
               <TouchableOpacity
                 style={styles.menuItem}

@@ -154,6 +154,20 @@ export default function PerfilScreen() {
                 <Text style={styles.menuText}>Cadastrar Estagiário</Text>
               </TouchableOpacity>
 
+              {/* relatorios */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/relatorio-atendimentos')}
+              >
+                <Image
+                  source={require('../../assets/images/relatorio2.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>RelatóSrio Atendimentos</Text>
+              </TouchableOpacity>
+
+
               {/* perfil ativo */}
               <TouchableOpacity
                 style={[

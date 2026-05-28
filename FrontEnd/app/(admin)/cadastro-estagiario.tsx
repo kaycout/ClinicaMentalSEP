@@ -205,6 +205,21 @@ export default function CadastroScreen() {
                 </Text>
               </TouchableOpacity>
 
+              {/* item de menu: relatorio atendimentos */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/relatorio-atendimentos')}
+              >
+                <Image
+                  source={require('../../assets/images/relatorio2.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>
+                  Relatório Atendimentos
+                </Text>
+              </TouchableOpacity>
+
               {/* item de menu: perfil do administrador */}
               <TouchableOpacity
                 style={styles.menuItem}
