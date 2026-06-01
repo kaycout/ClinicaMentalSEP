@@ -258,10 +258,6 @@ export default function SalasAdminScreen() {
                     {sala.status}
                   </Text>
                 </View>
-
-                <TouchableOpacity style={styles.detailsButton}>
-                  <Text style={styles.detailsText}>Ver detalhes</Text>
-                </TouchableOpacity>
               </View>
             ))}
           </View>

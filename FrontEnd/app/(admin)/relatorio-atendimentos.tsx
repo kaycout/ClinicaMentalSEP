@@ -216,11 +216,12 @@ const styles = StyleSheet.create({
 
   // item do menu
   menuItem: {
-    flexDirection: 'row', // elementos em linha
-    alignItems: 'center', // alinhamento vertical
-    paddingVertical: 14, // espaçamento vertical
-    paddingHorizontal: 14, // espaçamento horizontal
-    borderRadius: 12, // arredondamento
+  flexDirection: 'row', // elementos em linha
+  alignItems: 'center', // alinhamento vertical
+  paddingVertical: 14, // espaçamento vertical
+  paddingHorizontal: 14, // espaçamento horizontal
+  borderRadius: 12, // arredondamento
+  marginHorizontal: 10, // espaçamento para não encostar nas bordas
   },
 
   // item ativo do menu
