@@ -12,6 +12,7 @@ import {
   // componente de texto
   // componente de botão deslizante usado para ativar ou desativar opções
   Text,
+  TextInput,
   // botão com clique e efeito ao toque
   TouchableOpacity,
   // componente base de estrutura e layout
@@ -120,25 +121,45 @@ export default function SalasScreen() {
             </View>
           </View>
 
+          {/* pesquisa */}
+          <View style={styles.searchCard}>
+            <TextInput
+              placeholder="Pesquisar sala..."
+              placeholderTextColor="#8A98A3"
+              style={styles.searchInput}
+            />
+          </View>
+
           {/* cards */}
           <View style={[styles.cardsWrap, !isMobile && styles.cardsWrapDesktop]}>
             {salas.map((sala, index) => (
-              <View key={index} style={[styles.card, !isMobile && styles.cardDesktop]}>
+              <View
+                key={index}
+                style={[styles.card, !isMobile && styles.cardDesktop]}
+              >
 
-                <View style={styles.cardHeader}>
-                  <Ionicons name="business-outline" size={18} color="#0C706E" />
-                  <Text style={styles.cardTitle}>{sala.nome}</Text>
-                </View>
+                <View style={styles.cardTop}>
+                  <View style={styles.roomIcon}>
+                    <Text style={styles.roomIconText}>▥</Text>
+                  </View>
 
-                <View style={styles.timeRow}>
-                  <Ionicons name="time-outline" size={14} color="#64748B" />
-                  <Text style={styles.cardSubtitle}>{sala.horario}</Text>
+                  <View style={styles.cardTopInfo}>
+                    <Text style={styles.cardTitle}>
+                      {sala.nome}
+                    </Text>
+
+                    <Text style={styles.cardSubtitle}>
+                      {sala.horario}
+                    </Text>
+                  </View>
                 </View>
 
                 <View
                   style={[
                     styles.badge,
-                    sala.status === 'Livre' ? styles.badgeFree : styles.badgeBusy,
+                    sala.status === 'Livre'
+                      ? styles.badgeFree
+                      : styles.badgeBusy,
                   ]}
                 >
                   <Text
@@ -152,12 +173,7 @@ export default function SalasScreen() {
                     {sala.status}
                   </Text>
                 </View>
-
-                {/* ação somente visual */}
-                <TouchableOpacity style={styles.detailsButton}>
-                <Text style={styles.detailsText}>Ver detalhes</Text>
-              </TouchableOpacity>
-            </View>
+              </View>
             ))}
           </View>
         </ScrollView>
@@ -295,10 +311,11 @@ const styles = StyleSheet.create({
 
   // organização dos cards no desktop
   cardsWrapDesktop: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
   },
-
+  
   // card principal de informações
   card: {
     width: '100%',
@@ -309,31 +326,20 @@ const styles = StyleSheet.create({
     borderColor: '#E0E9E6',
   },
 
+  // área de informações do topo do card
+  cardTopInfo: {
+    flex: 1,
+  },
+
   // largura dos cards no desktop
   cardDesktop: {
     width: '48.5%',
-  },
-
-  // cabeçalho do card
-  cardHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    marginBottom: 6,
   },
 
   // título exibido dentro do card
   cardTitle: {
     fontSize: 16,
     fontWeight: '600',
-  },
-
-  // linha que organiza horário e ícones
-  timeRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    marginBottom: 10,
   },
 
   // subtítulo ou descrição do card
@@ -377,19 +383,42 @@ const styles = StyleSheet.create({
     color: '#B91C1C',
   },
 
-  // botão para visualizar detalhes
-  detailsButton: {
-    height: 42,
-    borderRadius: 12,
-    backgroundColor: '#EAF6F2',
-    justifyContent: 'center',
+  // topo do card
+  cardTop: {
+    flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 18,
   },
 
-  // texto do botão de detalhes
-  detailsText: {
+  // círculo do ícone da sala
+  roomIcon: {
+    width: 54,
+    height: 54,
+    borderRadius: 27,
+    backgroundColor: '#DCEFEB',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 14,
+  },
+
+  // ícone/texto da sala
+  roomIconText: {
+    fontSize: 24,
     color: '#087A73',
-    fontSize: 14,
-    fontWeight: '600',
+  },
+
+   searchCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: '#DCEBE7',
+    padding: 16,
+    marginBottom: 18,
+  },
+
+  // campo de pesquisa
+  searchInput: {
+    fontSize: 15,
+    color: '#17262F',
   },
 });
