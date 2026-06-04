@@ -112,15 +112,11 @@ export default function ReagendamentoScreen() {
 
             {/* logo */}
             <View style={styles.logoBox}>
-
               <Text style={styles.psi}>Ψ</Text>
 
               <View>
                 <Text style={styles.logoText}>SEP</Text>
-
-                <Text style={styles.logoSub}>
-                  Clínica de Psicologia
-                </Text>
+                <Text style={styles.logoSub}>Clínica de Psicologia</Text>
               </View>
             </View>
 
@@ -167,7 +163,7 @@ export default function ReagendamentoScreen() {
                 />
 
                 <Text style={styles.menuText}>Pacientes</Text>
-      </TouchableOpacity>
+              </TouchableOpacity>
 
           {/* salas */}
           <TouchableOpacity
@@ -179,9 +175,7 @@ export default function ReagendamentoScreen() {
               style={styles.menuIcon}
             />
 
-            <Text style={styles.menuText}>
-              Salas
-            </Text>
+            <Text style={styles.menuText}>Salas</Text>
           </TouchableOpacity>
 
           {/* cancelamentos */}
@@ -197,6 +191,19 @@ export default function ReagendamentoScreen() {
             <Text style={styles.menuText}>Cancelamentos</Text>
           </TouchableOpacity>
 
+          {/* solicitacoes de reagendamentos*/}
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => router.push('/solicitacao-reagendamento')}
+          >
+            <Image
+              source={require('../assets/images/reagendamento.png')}
+              style={styles.menuIcon}
+            />
+  
+            <Text style={styles.menuText}>Pedidos reagendamento</Text>
+          </TouchableOpacity>
+
           {/* cadastrar estagiário */}
           <TouchableOpacity
             style={styles.menuItem}
@@ -210,29 +217,19 @@ export default function ReagendamentoScreen() {
             <Text style={styles.menuText}>Cadastrar Estagiário</Text>
           </TouchableOpacity>
 
-                    {/* reagendamento ativo */}
+          {/* item do menu: relatório de atendimentos */}
           <TouchableOpacity
-            style={[
-              styles.menuItem,
-              styles.menuActive,
-            ]}
+            style={styles.menuItem}
+            onPress={() => router.push('/relatorio-atendimentos')}
           >
-            {/* ícone do menu de reagendamento */}
-            <Ionicons
-              name="refresh-outline"
-              size={20}
-              color="#0C706E"
+            {/* ícone de relatório */}
+            <Image
+              source={require('../assets/images/relatorio2.png')}
+              style={styles.menuIcon}
             />
-
-            {/* texto do menu ativo */}
-            <Text
-              style={[
-                styles.menuText,
-                styles.menuTextActive,
-              ]}
-            >
-              Reagendamento
-            </Text>
+  
+            {/* texto do item relatório */}
+            <Text style={styles.menuText}>Relatório Atendimentos</Text>
           </TouchableOpacity>
 
           {/* perfil */}
@@ -251,7 +248,7 @@ export default function ReagendamentoScreen() {
           </TouchableOpacity>
         </View>
       </View>
-      )}
+    )}
 
         {/* conteúdo */}
         <ScrollView
@@ -420,7 +417,6 @@ export default function ReagendamentoScreen() {
                   ]}
                 />
               </View>
-
             </View>
 
             {/* motivo */}

@@ -105,12 +105,8 @@ export default function SalasScreen() {
           </View>
         )}
 
-        {/* conteudo */}
-        <ScrollView
-          style={styles.scroll}
-          contentContainerStyle={styles.content}
-          showsVerticalScrollIndicator={false}
-        >
+        {/* área principal do conteúdo */}
+        <ScrollView contentContainerStyle={styles.scrollContent}>
 
           {/* header */}
           <View style={styles.header}>
@@ -279,7 +275,7 @@ const styles = StyleSheet.create({
   },
 
   // área principal onde fica todo o conteúdo da tela
-  content: {
+  scrollContent: {
     paddingHorizontal: 34,
     paddingTop: 48,
     paddingBottom: 28,

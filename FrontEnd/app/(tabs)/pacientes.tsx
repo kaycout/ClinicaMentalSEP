@@ -165,12 +165,8 @@ export default function PacientesScreen() {
           </View>
         )}
 
-        {/* conteúdo principal */}
-        <ScrollView
-          style={[styles.content, isMobile && styles.contentMobile]}
-          contentContainerStyle={styles.contentContainer}
-          showsVerticalScrollIndicator={false}
-        >
+        {/* área principal do conteúdo */}
+        <ScrollView contentContainerStyle={styles.scrollContent}>
 
           {/* título da página */}
           <View style={[styles.topRow, isMobile && styles.topRowMobile]}>
@@ -387,9 +383,7 @@ export default function PacientesScreen() {
             ))}
 
             <View style={styles.footerInfo}>
-              <Text style={styles.footerInfoText}>
-                O estagiário não pode cadastrar, editar ou excluir pacientes.
-              </Text>
+              <Text style={styles.footerInfoText}>O estagiário não pode cadastrar, editar ou excluir pacientes.</Text>
             </View>
           </View>
         </ScrollView>
@@ -561,7 +555,7 @@ const styles = StyleSheet.create({
   },
 
   // conteúdo principal
-  content: {
+  scrollContent: {
     flex: 1,
     paddingHorizontal: 34,
     paddingTop: 30,

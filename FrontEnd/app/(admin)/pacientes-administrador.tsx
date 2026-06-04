@@ -109,9 +109,7 @@ export default function PacientesAdminScreen() {
               {/* textos do logo */}
               <View>
                 <Text style={styles.logoText}>SEP</Text>
-                <Text style={styles.logoSub}>
-                  Clínica de Psicologia
-                </Text>
+                <Text style={styles.logoSub}>Clínica de Psicologia</Text>
               </View>
             </View>
 
@@ -130,15 +128,11 @@ export default function PacientesAdminScreen() {
                 />
 
                 {/* texto do menu */}
-                <Text style={styles.menuText}>
-                  Administrador
-                </Text>
+                <Text style={styles.menuText}>Administrador</Text>
               </TouchableOpacity>
 
         {/* título da seção de gerenciamento */}
-        <Text style={styles.menuLabel}>
-          GERENCIAMENTO
-        </Text>
+        <Text style={styles.menuLabel}>GERENCIAMENTO</Text>
 
         {/* item do menu: agendamentos */}
         <TouchableOpacity
@@ -152,18 +146,11 @@ export default function PacientesAdminScreen() {
           />
 
           {/* texto do menu */}
-          <Text style={styles.menuText}>
-            Agendamentos
-          </Text>
+          <Text style={styles.menuText}>Agendamentos</Text>
         </TouchableOpacity>
 
         {/* item do menu: pacientes (ativo) */}
-        <TouchableOpacity
-          style={[
-            styles.menuItem,
-            styles.menuActive,
-          ]}
-        >
+        <TouchableOpacity style={[styles.menuItem, styles.menuActive,]}>
           {/* ícone de pacientes */}
           <Image
             source={require('../../assets/images/paciente.png')}
@@ -171,14 +158,7 @@ export default function PacientesAdminScreen() {
           />
 
           {/* texto do menu ativo */}
-          <Text
-            style={[
-              styles.menuText,
-              styles.menuTextActive,
-            ]}
-          >
-            Pacientes
-          </Text>
+          <Text style={[styles.menuText, styles.menuActive,]}>Pacientes</Text>
         </TouchableOpacity>
 
         {/* item do menu: salas */}
@@ -193,9 +173,7 @@ export default function PacientesAdminScreen() {
           />
 
           {/* texto do menu */}
-          <Text style={styles.menuText}>
-            Salas
-          </Text>
+          <Text style={styles.menuText}>Salas</Text>
         </TouchableOpacity>
 
         {/* item do menu: cancelamentos */}
@@ -210,9 +188,22 @@ export default function PacientesAdminScreen() {
           />
 
           {/* texto do menu */}
-          <Text style={styles.menuText}>
-            Cancelamentos
-          </Text>
+          <Text style={styles.menuText}>Cancelamentos</Text>
+        </TouchableOpacity>
+
+        {/* item do menu: solicitacoes de reagendamentos */}
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => router.push('/solicitacao-reagendamentos')}
+        >
+          {/* ícone de cancelamentos */}
+          <Image
+            source={require('../../assets/images/reagendamento.png')}
+            style={styles.menuIcon}
+          />
+
+          {/* texto do menu */}
+          <Text style={styles.menuText}>Pedidos reagendamento</Text>
         </TouchableOpacity>
 
         {/* item do menu: cadastro de estagiário */}
@@ -227,9 +218,7 @@ export default function PacientesAdminScreen() {
           />
 
           {/* texto do menu */}
-          <Text style={styles.menuText}>
-            Cadastrar Estagiário
-          </Text>
+          <Text style={styles.menuText}>Cadastrar Estagiário</Text>
         </TouchableOpacity>
         
         {/* item do menu: relatório de atendimentos */}
@@ -244,9 +233,7 @@ export default function PacientesAdminScreen() {
           />
 
           {/* texto do item relatório */}
-          <Text style={styles.menuText}>
-            Relatório Atendimentos
-          </Text>
+          <Text style={styles.menuText}>Relatório Atendimentos</Text>
         </TouchableOpacity>
 
         {/* item do menu: perfil */}
@@ -261,21 +248,15 @@ export default function PacientesAdminScreen() {
           />
 
           {/* texto do menu */}
-          <Text style={styles.menuText}>
-            Perfil
-          </Text>
+          <Text style={styles.menuText}>Perfil</Text>
         </TouchableOpacity>
       </View>
     </View>
-    )}
+  )}
 
         {/* área principal do conteúdo */}
-        <ScrollView
-          style={styles.content}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
-
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+        
           {/* círculos decorativos do fundo */}
           <View style={styles.decorCircleOne} />
           <View style={styles.decorCircleTwo} />
@@ -382,9 +363,7 @@ export default function PacientesAdminScreen() {
                   style={styles.detailsButton}
                   onPress={() => router.push('/paciente-detalhe-admistrador')}
                 >
-                  <Text style={styles.detailsButtonText}>
-                    Ver detalhes
-                  </Text>
+                  <Text style={styles.detailsButtonText}>Ver detalhes</Text>
                 </TouchableOpacity>
               </View>
             ))}

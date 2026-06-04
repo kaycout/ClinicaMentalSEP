@@ -124,7 +124,6 @@ export default function NovoAgendamentoAdministradorScreen() {
 
             <View>
               <Text style={styles.logoText}>SEP</Text>
-
               <Text style={styles.logoSub}>Clínica de Psicologia</Text>
             </View>
           </View>
@@ -201,6 +200,19 @@ export default function NovoAgendamentoAdministradorScreen() {
           <Text style={styles.menuText}>Cancelamentos</Text>
         </TouchableOpacity>
 
+        {/* solicitacoes de reagendamentos*/}
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => router.push('/solicitacao-reagendamento')}
+        >
+          <Image
+            source={require('../assets/images/reagendamento.png')}
+            style={styles.menuIcon}
+          />
+
+          <Text style={styles.menuText}>Pedidos reagendamento</Text>
+        </TouchableOpacity>
+
         {/* cadastrar estagiário */}
         <TouchableOpacity
           style={styles.menuItem}
@@ -226,9 +238,7 @@ export default function NovoAgendamentoAdministradorScreen() {
           />
 
           {/* texto do item relatório */}
-          <Text style={styles.menuText}>
-            Relatório Atendimentos
-          </Text>
+          <Text style={styles.menuText}>Relatório Atendimentos</Text>
         </TouchableOpacity>
         
         {/* perfil */}
@@ -247,15 +257,10 @@ export default function NovoAgendamentoAdministradorScreen() {
     </View>
   )}
 
-    {/* conteúdo principal */}
-    <ScrollView
-      style={styles.content}
-      contentContainerStyle={[
-        styles.scrollContent,
-        isDesktop && styles.scrollContentDesktop,
-      ]}
-      showsVerticalScrollIndicator={false}
-    >
+    
+    {/* área principal do conteúdo */}
+    <ScrollView contentContainerStyle={styles.scrollContent}>
+            
       {/* bolinhas do fundo */}
       <View style={styles.decorCircleOne} />
       <View style={styles.decorCircleTwo} />
@@ -440,11 +445,11 @@ export default function NovoAgendamentoAdministradorScreen() {
                 </TouchableOpacity>
 
                 {/* exibe o calendário somente se showDatePicker for true */}
-                {showDatePicker && ( <DateTimePicker value={selectedDate} mode="date" display="default" onChange={onChangeDate}/>
+                {showDatePicker && ( <DateTimePicker value={selectedDate} mode="date" 
+                display="default" onChange={onChangeDate}/>
                 )}
               </>
             )}
-
             </View>
 
             {/* campo de observações */}
@@ -476,7 +481,7 @@ export default function NovoAgendamentoAdministradorScreen() {
                 multiline
               />
             </View>
-            </View>
+          </View>
 
             {/* bloco do agendamento automático */}
             <View style={styles.autoBlock}>

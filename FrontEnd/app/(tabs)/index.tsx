@@ -185,13 +185,9 @@ export default function AgendaScreen() {
           </View>
         )}
 
-        {/* conteúdo principal da tela */}
-        <ScrollView
-          style={[styles.content, isMobile && styles.contentMobile]}
-          contentContainerStyle={styles.contentContainer}
-          showsVerticalScrollIndicator={false}
-        >
-
+        {/* área principal do conteúdo */}
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+                
           {/* topo da agenda */}
           <View style={[styles.topRow, isMobile && styles.topRowMobile]}>
             <View style={styles.titleBox}>
@@ -226,7 +222,6 @@ export default function AgendaScreen() {
                   <View style={styles.avatarUser}>
                     <Text style={styles.avatarUserText}>JS</Text>
                   </View>
-
                   <View>
                     <Text style={styles.userName}>João Silva</Text>
                     <Text style={styles.userRole}>Estagiário</Text>
@@ -272,9 +267,7 @@ export default function AgendaScreen() {
               onPress={() => router.push('/solicitacao-reagendamento')}
             >
               <Ionicons name="refresh-outline" size={20} color="#0C706E" />
-              <Text style={styles.reagendamentoButtonText}>
-                Solicitar Reagendamento
-              </Text>
+              <Text style={styles.reagendamentoButtonText}>Solicitar Reagendamento</Text>
             </TouchableOpacity>
           </View>
 
@@ -443,9 +436,7 @@ export default function AgendaScreen() {
 
             {/* rodapé da lista, essa mensagem aparece no final dos agendamentos do dia */}
             <View style={styles.footerInfo}>
-              <Text style={styles.footerInfoText}>
-                Exibe somente atendimentos vinculados ao estagiário.
-              </Text>
+              <Text style={styles.footerInfoText}>Exibe somente atendimentos vinculados ao estagiário.</Text>
             </View>
           </View>
         </ScrollView>
@@ -639,7 +630,7 @@ const styles = StyleSheet.create({
   },
 
   // conteúdo principal da tela
-    content: {
+    scrollContent: {
     flex: 1,
     paddingHorizontal: 34,
     paddingTop: 30,

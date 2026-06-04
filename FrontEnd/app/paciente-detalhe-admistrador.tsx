@@ -1,7 +1,7 @@
 // arquivo app/paciente-detalhe.tsx
 
 // importação principal do React, pois é necessário para criar componentes React Native.
-import React from 'react';
+import React, { useState } from 'react';
 
 // componentes nativos do React são usados nesta tela
 import {
@@ -10,6 +10,7 @@ import {
   StyleSheet,
   // componente de texto
   Text,
+  TextInput,
   // botão com clique e efeito ao toque
   TouchableOpacity,
   // componente base de estrutura e layout
@@ -34,11 +35,46 @@ import { Image } from 'react-native';
 // usado para deixar o background mais moderno e suave
 import { LinearGradient } from 'expo-linear-gradient';
 
+// importa para selecionar as opcoes de pacientes
+import { Picker } from '@react-native-picker/picker';
+
 // tela de detalhes do paciente
 export default function PacienteDetalheScreen() {
 
   // pegando largura da tela pra responsividade
   const { width } = useWindowDimensions();
+
+  // Criando campos editaveis
+  const [editando, setEditando] = useState(false);
+  // nome do paciente
+  const [nome, setNome] = useState('Ana Silva');
+  // idade do paciente
+  const [idade, setIdade] = useState('14');
+  // tipo de paciente
+  const [tipo, setTipo] = useState('Criança');
+  // opcoes de pacientes
+  const tiposPaciente = [
+  'Criança',
+  'Adolescente',
+  'Adulto',
+  'Idoso',
+];
+  // aparece responsavel se for menor de idade
+  const [responsavel, setResponsavel] = useState('Mariana Silva');
+  // contato do paciente
+  const [contato, setContato] = useState('11 95596-4867');
+
+  // campos editaveis para administrador do resumo do acompanhamento do paciente
+  // quantidade de atendimentos
+  const [atendimentos, setAtendimentos] = useState('8');
+  // quantidade de presenças
+  const [presencas, setPresencas] = useState('6');
+  // quantidade de faltas
+  const [faltas, setFaltas] = useState('2');
+  // quantidade de cancelamentos
+  const [cancelamentos, setCancelamentos] = useState('2');
+  // situacao do paciente
+  const [situacao, setSituacao] = useState('Em acompanhamento');
 
   // define se é mobile ou desktop baseado na largura da tela
   const isDesktop = width >= 900;
@@ -85,15 +121,11 @@ export default function PacienteDetalheScreen() {
                 />
 
                 {/* texto do menu */}
-                <Text style={styles.menuText}>
-                  Administrador
-                </Text>
+                <Text style={styles.menuText}>Administrador</Text>
               </TouchableOpacity>
 
         {/* título da seção de gerenciamento */}
-        <Text style={styles.menuLabel}>
-          GERENCIAMENTO
-        </Text>
+        <Text style={styles.menuLabel}>GERENCIAMENTO</Text>
 
         {/* item do menu: agendamentos */}
         <TouchableOpacity
@@ -107,18 +139,12 @@ export default function PacienteDetalheScreen() {
           />
             
           {/* texto do menu */}
-          <Text style={styles.menuText}>
-            Agendamentos
-          </Text>
+          <Text style={styles.menuText}>Agendamentos</Text>
         </TouchableOpacity>
             
         {/* item do menu: pacientes (ativo) */}
-        <TouchableOpacity
-          style={[
-            styles.menuItem,
-            styles.menuActive,
-          ]}
-        >
+        <TouchableOpacity style={[styles.menuItem, styles.menuActive,]}>
+
           {/* ícone de pacientes */}
           <Image
             source={require('../assets/images/paciente.png')}
@@ -126,14 +152,7 @@ export default function PacienteDetalheScreen() {
           />
             
           {/* texto do menu ativo */}
-          <Text
-            style={[
-              styles.menuText,
-              styles.menuTextActive,
-            ]}
-          >
-            Pacientes
-          </Text>
+          <Text style={[styles.menuText, styles.menuTextActive,]}>Pacientes</Text>
         </TouchableOpacity>
             
         {/* item do menu: salas */}
@@ -148,9 +167,7 @@ export default function PacienteDetalheScreen() {
           />
 
           {/* texto do menu */}
-          <Text style={styles.menuText}>
-            Salas
-          </Text>
+          <Text style={styles.menuText}>Salas</Text>
         </TouchableOpacity>
             
         {/* item do menu: cancelamentos */}
@@ -165,9 +182,7 @@ export default function PacienteDetalheScreen() {
           />
             
           {/* texto do menu */}
-          <Text style={styles.menuText}>
-            Cancelamentos
-          </Text>
+          <Text style={styles.menuText}>Cancelamentos</Text>
         </TouchableOpacity>
             
         {/* item do menu: cadastro de estagiário */}
@@ -182,9 +197,7 @@ export default function PacienteDetalheScreen() {
           />
             
           {/* texto do menu */}
-          <Text style={styles.menuText}>
-            Cadastrar Estagiário
-          </Text>
+          <Text style={styles.menuText}>Cadastrar Estagiário</Text>
         </TouchableOpacity>
             
         {/* item do menu: perfil */}
@@ -206,18 +219,7 @@ export default function PacienteDetalheScreen() {
   )}
 
       {/* área principal do conteúdo da tela */}
-      <ScrollView
-        style={styles.content}
-
-        /* adiciona espaçamento interno e centralização no desktop */
-        contentContainerStyle={[
-          styles.scrollContent,
-          isDesktop && styles.contentDesktop,
-        ]}
-
-        /* remove a barra lateral de rolagem */
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView contentContainerStyle={styles.scrollContent}>
 
         {/* círculo decorativo grande do lado esquerdo */}
         <View style={styles.decorCircleOne} />
@@ -244,40 +246,29 @@ export default function PacienteDetalheScreen() {
           <View style={styles.headerTextBox}>
 
             {/* título principal */}
-            <Text style={styles.pageTitle}>
-              Detalhes do Paciente
-            </Text>
+            <Text style={styles.pageTitle}>Detalhes do Paciente</Text>
 
             {/* subtítulo da página */}
-            <Text style={styles.pageSubtitle}>
-              Visualize as informações e acompanhamentos permitidos do paciente.
-            </Text>
+            <Text style={styles.pageSubtitle}>Visualize as informações e acompanhamentos permitidos do paciente.</Text>
           </View>
 
           {/* card principal do paciente */}
           <View style={styles.profileCard}>
-
             {/* avatar do paciente */}
             <View style={styles.avatar}>
 
               {/* iniciais do paciente */}
-              <Text style={styles.avatarText}>
-                AS
-              </Text>
+              <Text style={styles.avatarText}>AS</Text>
             </View>
 
             {/* informações principais do paciente */}
             <View style={styles.profileInfo}>
 
               {/* nome do paciente */}
-              <Text style={styles.patientName}>
-                Ana Silva
-              </Text>
+              <Text style={styles.patientName}>Ana Silva</Text>
 
               {/* idade e categoria */}
-              <Text style={styles.patientSub}>
-                14 anos • Criança
-              </Text>
+              <Text style={styles.patientSub}>14 anos • Criança</Text>
 
               {/* badge de status */}
               <View style={styles.statusBadge}>
@@ -290,9 +281,7 @@ export default function PacienteDetalheScreen() {
                 />
 
                 {/* texto do status */}
-                <Text style={styles.statusText}>
-                  Em acompanhamento
-                </Text>
+                <Text style={styles.statusText}>Em acompanhamento</Text>
               </View>
             </View>
           </View>
@@ -314,9 +303,7 @@ export default function PacienteDetalheScreen() {
             <View style={styles.permissionTextBox}>
 
               {/* título da permissão */}
-              <Text style={styles.permissionTitle}>
-                Acesso administrativo completo
-              </Text>
+              <Text style={styles.permissionTitle}>Acesso administrativo completo</Text>
 
               {/* descrição da permissão */}
               <Text style={styles.permissionDescription}>
@@ -328,12 +315,7 @@ export default function PacienteDetalheScreen() {
           </View>
 
           {/* grid principal das informações */}
-          <View
-            style={[
-              styles.grid,
-              isDesktop && styles.gridDesktop,
-            ]}
-          >
+          <View style={[styles.grid,isDesktop && styles.gridDesktop,]}>
 
             {/* card de dados básicos */}
             <View style={styles.sectionCard}>
@@ -349,18 +331,93 @@ export default function PacienteDetalheScreen() {
                 />
 
                 {/* título da seção */}
-                <Text style={styles.sectionTitle}>
-                  Dados básicos
-                </Text>
+                <Text style={styles.sectionTitle}>Dados básicos</Text>
               </View>
 
-              {/* linhas de informações */}
-              <InfoRow label="Nome" value="Ana Silva" />
-              <InfoRow label="Idade" value="14 anos" />
-              <InfoRow label="Tipo" value="Criança" />
-              <InfoRow label="Responsável" value="Mariana Silva" />
-              <InfoRow label="Contato" value="11 95596-4867" />
+              {/* linhas de informações com campos editaveis para administrador */}
+
+              {/* campo nome */}
+              <View style={styles.infoRow}>
+              <Text style={styles.infoLabel}>Nome</Text>
+
+              {editando ? (
+                <TextInput
+                  style={styles.input}
+                  value={nome}
+                  onChangeText={setNome}
+                />
+              ) : (
+                <Text style={styles.infoValue}>{nome}</Text>
+              )}
             </View>
+
+            {/* campo idade */}
+              <View style={styles.infoRow}>
+              <Text style={styles.infoLabel}>Idade</Text>
+
+              {editando ? (
+                <TextInput
+                  style={styles.input}
+                  value={idade}
+                  onChangeText={setIdade}
+                />
+              ) : (
+                <Text style={styles.infoValue}>{idade}</Text>
+              )}
+            </View>
+
+            {/* campo tipo de paciente com as opcoes de paciente */}
+              <View style={styles.infoRow}>
+              <Text style={styles.infoLabel}>Tipo</Text>
+
+              {editando ? (
+                <Picker
+                  selectedValue={tipo}
+                  style={styles.pickerContainer}
+                  onValueChange={(itemValue) => setTipo(itemValue)}
+                >
+                  <Picker.Item label="Criança" value="Criança" />
+                  <Picker.Item label="Adolescente" value="Adolescente" />
+                  <Picker.Item label="Adulto" value="Adulto" />
+                  <Picker.Item label="Idoso" value="Idoso" />
+                </Picker>
+              ) : (
+                <Text style={styles.infoValue}>{tipo}</Text>
+              )}
+            </View>
+
+            {/* campo de responsavel que so aparece so o paciente for crianca ou adolescente */}
+              {(tipo === 'Criança' || tipo === 'Adolescente') && (
+              <View style={styles.infoRow}>
+                <Text style={styles.infoLabel}>Responsável</Text>
+
+                {editando ? (
+                  <TextInput
+                    style={styles.input}
+                    value={responsavel}
+                    onChangeText={setResponsavel}
+                  />
+                ) : (
+                  <Text style={styles.infoValue}>{responsavel}</Text>
+                )}
+              </View>
+            )}
+
+            {/* contato do paciente */}
+              <View style={styles.infoRow}>
+              <Text style={styles.infoLabel}>Contato</Text>
+
+              {editando ? (
+                <TextInput
+                  style={styles.input}
+                  value={contato}
+                  onChangeText={setContato}
+                />
+              ) : (
+                <Text style={styles.infoValue}>{contato}</Text>
+              )}
+            </View>
+          </View>
 
             {/* card de resumo */}
             <View style={styles.sectionCard}>
@@ -376,24 +433,83 @@ export default function PacienteDetalheScreen() {
                 />
 
                 {/* título da seção */}
-                <Text style={styles.sectionTitle}>
-                  Resumo do acompanhamento
-                </Text>
+                <Text style={styles.sectionTitle}>Resumo do acompanhamento</Text>
               </View>
 
               {/* informações do acompanhamento */}
-              <InfoRow label="Atendimentos" value="8" />
-              <InfoRow label="Presenças" value="6" />
-              <InfoRow label="Faltas" value="2" />
-              <InfoRow label="Cancelamentos" value="2" />
+              {/* campo atendimentos */}
+              <View style={styles.infoRow}>
+              <Text style={styles.infoLabel}>Atendimentos</Text>
 
-              {/* situação atual */}
-              <InfoRow
-                label="Situação atual"
-                value="Em acompanhamento"
-              />
+              {editando ? (
+                <TextInput
+                  style={styles.input}
+                  value={atendimentos}
+                  onChangeText={setAtendimentos}
+                />
+              ) : (
+                <Text style={styles.infoValue}>{atendimentos}</Text>
+              )}
+            </View>
+              {/* campo presenças */}
+              <View style={styles.infoRow}>
+              <Text style={styles.infoLabel}>Presenças</Text>
+
+              {editando ? (
+                <TextInput
+                  style={styles.input}
+                  value={presencas}
+                  onChangeText={setPresencas}
+                />
+              ) : (
+                <Text style={styles.infoValue}>{presencas}</Text>
+              )}
+            </View>
+              {/* campo faltas */}
+              <View style={styles.infoRow}>
+              <Text style={styles.infoLabel}>Faltas</Text>
+
+              {editando ? (
+                <TextInput
+                  style={styles.input}
+                  value={faltas}
+                  onChangeText={setFaltas}
+                />
+              ) : (
+                <Text style={styles.infoValue}>{faltas}</Text>
+              )}
+            </View>
+              {/* campo cancelamentos */}
+              <View style={styles.infoRow}>
+              <Text style={styles.infoLabel}>Cancelamentos</Text>
+
+              {editando ? (
+                <TextInput
+                  style={styles.input}
+                  value={cancelamentos}
+                  onChangeText={setCancelamentos}
+                />
+              ) : (
+                <Text style={styles.infoValue}>{cancelamentos}</Text>
+              )}
+            </View>
+
+             {/* campo situacao do paciente */}
+              <View style={styles.infoRow}>
+              <Text style={styles.infoLabel}>Situação Atual</Text>
+
+              {editando ? (
+                <TextInput
+                  style={styles.input}
+                  value={situacao}
+                  onChangeText={setSituacao}
+                />
+              ) : (
+                <Text style={styles.infoValue}>{situacao}</Text>
+              )}
             </View>
           </View>
+        </View>
 
           {/* card de observações */}
           <View style={styles.sectionCard}>
@@ -409,67 +525,41 @@ export default function PacienteDetalheScreen() {
               />
 
               {/* título */}
-              <Text style={styles.sectionTitle}>
-                Observações administrativas
-              </Text>
+              <Text style={styles.sectionTitle}>Observações administrativas</Text>
             </View>
 
             {/* observação */}
             <View style={styles.noteBox}>
-              <Text style={styles.note}>
-                Paciente apresenta boa adaptação às sessões.
-              </Text>
+              <Text style={styles.note}>Paciente apresenta boa adaptação às sessões.</Text>
             </View>
 
             {/* observação */}
             <View style={styles.noteBox}>
-              <Text style={styles.note}>
-                Necessita acompanhamento contínuo com responsável.
-              </Text>
+              <Text style={styles.note}>Necessita acompanhamento contínuo com responsável.</Text>
             </View>
 
             {/* observação */}
             <View style={styles.noteBox}>
-              <Text style={styles.note}>
-                Última sessão realizada sem intercorrências.
-              </Text>
+              <Text style={styles.note}>Última sessão realizada sem intercorrências.</Text>
             </View>
           </View>
 
           {/* card de ações */}
-          <View style={styles.actionsCard}>
-
-            {/* botão principal */}
-            <TouchableOpacity style={styles.primaryButton}>
-
-              {/* ícone */}
-              <Ionicons
-                name="eye-outline"
-                size={17}
-                color="#FFFFFF"
-              />
-
-              {/* texto */}
-              <Text style={styles.primaryButtonText}>
-                Editar Paciente
-              </Text>
-            </TouchableOpacity>
-
-            {/* botão secundário */}
-            <TouchableOpacity style={styles.secondaryButton}>
-
-              {/* ícone */}
-              <Ionicons
-                name="calendar-outline"
-                size={17}
-                color="#0C706E"
-              />
-
-              {/* texto */}
-              <Text style={styles.secondaryButtonText}>
-                Ver agenda do paciente
-              </Text>
-            </TouchableOpacity>
+          <View style={styles.actionsCard}>        
+            <TouchableOpacity
+            style={styles.primaryButton}
+            onPress={() => {
+              if (editando) {
+                // aqui futuramente você chama a API
+                console.log('Paciente salvo');
+              }
+              setEditando(!editando);
+            }}
+          >
+          <Text style={styles.primaryButtonText}>
+          {editando ? 'Salvar Alterações' : 'Editar Paciente'}
+          </Text>
+            </TouchableOpacity>   
           </View>
         </View>
       </ScrollView>
@@ -977,25 +1067,34 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
 
-  // botão secundário da tela
-  // usado para visualizar agenda
-  secondaryButton: {
-    minHeight: 48,
-    borderRadius: 14,
-    backgroundColor: '#FFFFFF',
+  input: {
+    minWidth: 180,
+    height: 38,
     borderWidth: 1,
-    borderColor: '#0C706E',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
+    borderColor: '#DCEBE7',
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    backgroundColor: '#FFFFFF',
   },
 
-  // texto do botão secundário
-  secondaryButtonText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#0C706E',
+  // caixa do picker
+  pickerContainer: {
+    minWidth: 180,
+    height: 42,
+    borderWidth: 1,
+    borderColor: '#DCEBE7',
+    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+
+  // picker
+  picker: {
+    width: '100%',
+    height: 42,
+    color: '#152322',
+    fontSize: 13,
   },
 });
 

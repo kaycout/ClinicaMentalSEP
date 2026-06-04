@@ -141,6 +141,19 @@ export default function PerfilScreen() {
                 <Text style={styles.menuText}>Cancelamentos</Text>
               </TouchableOpacity>
 
+              {/* solicitacoes de reagendamento */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/solicitacao-reagendamento')}
+              >
+                <Image
+                  source={require('../../assets/images/reagendamento.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Pedidos reagendamento</Text>
+              </TouchableOpacity>
+
               {/* cadastrar estagiário */}
               <TouchableOpacity
                 style={styles.menuItem}
@@ -164,17 +177,12 @@ export default function PerfilScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>RelatóSrio Atendimentos</Text>
+                <Text style={styles.menuText}>Relatório Atendimentos</Text>
               </TouchableOpacity>
 
-
               {/* perfil ativo */}
-              <TouchableOpacity
-                style={[
-                  styles.menuItem,
-                  styles.menuActive,
-                ]}
-              >
+              <TouchableOpacity style={[styles.menuItem, styles.menuActive,]}>
+
                 <Image
                   source={require('../../assets/images/perfil.png')}
                   style={styles.menuIcon}
@@ -228,33 +236,25 @@ export default function PerfilScreen() {
                 {/* bloco do nome */}
                 <View style={styles.infoBlock}>
                   <Text style={styles.label}>Nome</Text>
-                  <Text style={styles.value}>
-                    Paulo Oliveira
-                  </Text>
+                  <Text style={styles.value}>Paulo Oliveira</Text>
                 </View>
 
                 {/* bloco do perfil de administrador */}
                 <View style={styles.infoBlock}>
                   <Text style={styles.label}>Perfil</Text>
-                  <Text style={styles.value}>
-                  Administrador
-                  </Text>
+                  <Text style={styles.value}>Administrador</Text>
                 </View>
 
                 {/* bloco do e-mail */}
                 <View style={styles.infoBlock}>
                   <Text style={styles.label}>E-mail</Text>
-                  <Text style={styles.value}>
-                    paulo@sep.com
-                  </Text>
+                  <Text style={styles.value}>paulo@sep.com</Text>
                 </View>
 
                 {/* bloco da função */}
                 <View style={styles.infoBlock}>
                   <Text style={styles.label}>Função</Text>
-                  <Text style={styles.value}>
-                    Acompanhamento clínico e registros
-                  </Text>
+                  <Text style={styles.value}>Acompanhamento clínico e registros</Text>
                 </View>
               </View>
             </View>

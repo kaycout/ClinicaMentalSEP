@@ -244,10 +244,7 @@ export default function AdminCalendarScreen() {
               {/* nome e subtítulo da clínica */}
               <View>
                 <Text style={styles.logoText}>SEP</Text>
-
-                <Text style={styles.logoSub}>
-                  Clínica de Psicologia
-                </Text>
+                <Text style={styles.logoSub}>Clínica de Psicologia</Text>
               </View>
             </View>
 
@@ -266,37 +263,21 @@ export default function AdminCalendarScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Administrador
-                </Text>
+                <Text style={styles.menuText}>Administrador</Text>
               </TouchableOpacity>
 
               {/* separador visual de seção do menu */}
-              <Text style={styles.menuLabel}>
-                GERENCIAMENTO
-              </Text>
+              <Text style={styles.menuLabel}>GERENCIAMENTO</Text>
 
               {/* item de menu: agendamentos */}
               {/* rota para gerenciamento de consultas */}
-              <TouchableOpacity
-                style={[
-                  styles.menuItem,
-                  styles.menuActive,
-                ]}
-              >
+              <TouchableOpacity style={[ styles.menuItem, styles.menuActive,]}>
                 <Image
                   source={require('../assets/images/agendamento.png')}
                   style={styles.menuIcon}
                 />
 
-                <Text
-                  style={[
-                    styles.menuText,
-                    styles.menuTextActive,
-                  ]}
-                >
-                  Agendamentos
-                </Text>
+                <Text style={[styles.menuText, styles.menuTextActive,]}>Agendamentos</Text>
               </TouchableOpacity>
 
               {/* item de menu: pacientes */}
@@ -310,9 +291,7 @@ export default function AdminCalendarScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Pacientes
-                </Text>
+                <Text style={styles.menuText}>Pacientes</Text>
               </TouchableOpacity>
 
               {/* item de menu: salas */}
@@ -326,9 +305,7 @@ export default function AdminCalendarScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Salas
-                </Text>
+                <Text style={styles.menuText}>Salas</Text>
               </TouchableOpacity>
 
               {/* item de menu: cancelamentos */}
@@ -342,9 +319,21 @@ export default function AdminCalendarScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Cancelamentos
-                </Text>
+                <Text style={styles.menuText}>Cancelamentos</Text>
+              </TouchableOpacity>
+
+              {/* item de menu: solicitacao reagendamentos */}
+              {/* solicitacoes de estagiario ao administrador de reagendamentos de pacientes */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/solicitacao-reagendamento')}
+              >
+                <Image
+                  source={require('../assets/images/reagendamento.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Pedidos reagendamento</Text>
               </TouchableOpacity>
 
               {/* item de menu: cadastro de estagiário */}
@@ -358,9 +347,7 @@ export default function AdminCalendarScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Cadastrar Estagiário
-                </Text>
+                <Text style={styles.menuText}>Cadastrar Estagiário</Text>
               </TouchableOpacity>
 
 
@@ -376,9 +363,7 @@ export default function AdminCalendarScreen() {
                 />
 
                 {/* texto do item relatório */}
-                <Text style={styles.menuText}>
-                  Relatório Atendimentos
-                </Text>
+                <Text style={styles.menuText}>Relatório Atendimentos</Text>
               </TouchableOpacity>
 
               {/* item de menu: perfil */}
@@ -391,10 +376,7 @@ export default function AdminCalendarScreen() {
                   source={require('../assets/images/perfil.png')}
                   style={styles.menuIcon}
                 />
-
-                <Text style={styles.menuText}>
-                  Perfil
-                </Text>
+                <Text style={styles.menuText}>Perfil</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -402,11 +384,7 @@ export default function AdminCalendarScreen() {
 
         {/* conteúdo principal da página */}
         {/* área central com calendário, cards e informações */}
-        <ScrollView
-          style={styles.content}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
+        <ScrollView contentContainerStyle={styles.scrollContent}>
 
           {/* elementos decorativos do fundo */}
           {/* círculos e pontos usados apenas para estética visual */}

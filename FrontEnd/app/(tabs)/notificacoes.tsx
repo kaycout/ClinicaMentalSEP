@@ -78,6 +78,14 @@ const notificacoes = [
     cor: '#E03131',
     fundo: '#FFE1E5',
   },
+  {
+    titulo: 'Remarcação pendente',
+    descricao: 'Maria Helena teve duas faltas registradas no atendimento de hoje.',
+    tipo: 'Registro',
+    icone: 'close-circle-outline',
+    cor: '#E03131',
+    fundo: '#FFE1E5',
+  },
 ];
 
 export default function NotificacoesScreen() {
@@ -141,12 +149,9 @@ export default function NotificacoesScreen() {
           </View>
         )}
 
-        {/* conteúdo principal */}
-        <ScrollView
-          style={styles.content}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
+        {/* área principal do conteúdo */}
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+                
           {/* aqui é colocado elementos decorativos no fundo só pra estética */}
           <View style={styles.decorCircleOne} />
           <View style={styles.decorCircleTwo} />
@@ -169,7 +174,6 @@ export default function NotificacoesScreen() {
           {!isDesktop ? (
             <ScrollView
               horizontal
-              showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.summaryScroll}
             >
 
@@ -394,7 +398,7 @@ const styles = StyleSheet.create({
   },
 
   // conteúdo principal da tela
-  content: {
+  scroll: {
     flex: 1,
   },
 

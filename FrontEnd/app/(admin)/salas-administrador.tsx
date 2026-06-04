@@ -117,12 +117,8 @@ export default function SalasAdminScreen() {
                 <Text style={styles.menuText}>Pacientes</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
-                style={[
-                  styles.menuItem,
-                  styles.menuActive,
-                ]}
-              >
+              <TouchableOpacity style={[styles.menuItem, styles.menuActive,]}>
+
                 <Image
                   source={require('../../assets/images/salas.png')}
                   style={styles.menuIcon}
@@ -142,6 +138,18 @@ export default function SalasAdminScreen() {
                 />
 
                 <Text style={styles.menuText}>Cancelamentos</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/solicitacao-reagendamentos')}
+              >
+                <Image
+                  source={require('../../assets/images/reagendamento.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Pedidos reagendamento</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -182,12 +190,8 @@ export default function SalasAdminScreen() {
           </View>
         )}
 
-        {/* conteúdo */}
-        <ScrollView
-          style={styles.content}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
+        {/* área principal do conteúdo */}
+        <ScrollView contentContainerStyle={styles.scrollContent}>
 
           {/* decoração */}
           <View style={styles.decorCircleOne} />

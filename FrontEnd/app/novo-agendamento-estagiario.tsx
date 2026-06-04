@@ -162,12 +162,8 @@ export default function NovoAgendamentoEstagiarioScreen() {
           </View>
         )}
 
-        {/* conteúdo */}
-        <ScrollView
-          style={styles.content} 
-          contentContainerStyle={[styles.scrollContent, isDesktop && styles.scrollContentDesktop,]}
-          showsVerticalScrollIndicator={false}
-        >
+        {/* área principal do conteúdo */}
+        <ScrollView contentContainerStyle={styles.scrollContent}>
 
           {/* topo da tela */}
           <View style={styles.headerTextBox}>
@@ -447,8 +443,7 @@ export default function NovoAgendamentoEstagiarioScreen() {
           </ScrollView>
         </View>
       </LinearGradient>
-    );
-  }
+    )}
 
 // criação centralizada dos estilos da tela
 // aqui ficam todas as estilizações da interface organizadas por sessão

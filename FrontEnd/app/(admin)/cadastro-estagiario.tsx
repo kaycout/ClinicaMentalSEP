@@ -89,12 +89,8 @@ export default function CadastroScreen() {
 
                 {/* nome da aplicação */}
                 <Text style={styles.logoText}>SEP</Text>
-
                 {/* subtítulo da clínica */}
-                <Text style={styles.logoSub}>
-                  Clínica de Psicologia
-                </Text>
-
+                <Text style={styles.logoSub}>Clínica de Psicologia</Text>
               </View>
             </View>
 
@@ -113,15 +109,11 @@ export default function CadastroScreen() {
                 />
 
                 {/* texto do item de menu */}
-                <Text style={styles.menuText}>
-                  Administrador
-                </Text>
+                <Text style={styles.menuText}>Administrador</Text>
               </TouchableOpacity>
 
               {/* separador de seção do menu */}
-              <Text style={styles.menuLabel}>
-                GERENCIAMENTO
-              </Text>
+              <Text style={styles.menuLabel}>GERENCIAMENTO</Text>
 
               {/* item de menu: agendamentos */}
               <TouchableOpacity
@@ -133,9 +125,7 @@ export default function CadastroScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Agendamentos
-                </Text>
+                <Text style={styles.menuText}>Agendamentos</Text>
               </TouchableOpacity>
 
               {/* item de menu: pacientes */}
@@ -148,9 +138,7 @@ export default function CadastroScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Pacientes
-                </Text>
+                <Text style={styles.menuText}>Pacientes</Text>
               </TouchableOpacity>
 
               {/* item de menu: salas */}
@@ -163,9 +151,7 @@ export default function CadastroScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Salas
-                </Text>
+                <Text style={styles.menuText}>Salas</Text>
               </TouchableOpacity>
 
               {/* item de menu: cancelamentos */}
@@ -178,31 +164,31 @@ export default function CadastroScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Cancelamentos
-                </Text>
+                <Text style={styles.menuText}>Cancelamentos</Text>
+              </TouchableOpacity>
+
+              {/* item de menu: solicitacoes de reagendamentos */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/solicitacao-reagendamento')}
+              >
+                <Image
+                  source={require('../../assets/images/reagendamento.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Pedidos reagendamento</Text>
               </TouchableOpacity>
 
               {/* item de menu ativo: cadastro de estagiário (estado selecionado) */}
-              <TouchableOpacity
-                style={[
-                  styles.menuItem,
-                  styles.menuActive,
-                ]}
-              >
+              <TouchableOpacity style={[styles.menuItem, styles.menuActive,]}>
+
                 <Image
                   source={require('../../assets/images/estagiario.png')}
                   style={styles.menuIcon}
                 />
 
-                <Text
-                  style={[
-                    styles.menuText,
-                    styles.menuTextActive,
-                  ]}
-                >
-                  Cadastrar Estagiário
-                </Text>
+                <Text style={[styles.menuText,styles.menuTextActive,]}>Cadastrar Estagiário</Text>
               </TouchableOpacity>
 
               {/* item de menu: relatorio atendimentos */}
@@ -215,9 +201,7 @@ export default function CadastroScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Relatório Atendimentos
-                </Text>
+                <Text style={styles.menuText}>Relatório Atendimentos</Text>
               </TouchableOpacity>
 
               {/* item de menu: perfil do administrador */}
@@ -229,10 +213,7 @@ export default function CadastroScreen() {
                   source={require('../../assets/images/perfil.png')}
                   style={styles.menuIcon}
                 />
-
-                <Text style={styles.menuText}>
-                  Perfil
-                </Text>
+                <Text style={styles.menuText}>Perfil</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -252,17 +233,10 @@ export default function CadastroScreen() {
 
               {/* topo */}
               <View style={styles.header}>
-
                 <View>
-                  <Text style={styles.title}>
-                    Criar conta
-                  </Text>
-
-                  <Text style={styles.subtitle}>
-                    Selecione o tipo de conta que deseja criar
-                  </Text>
+                  <Text style={styles.title}>Criar conta</Text>
+                  <Text style={styles.subtitle}>Selecione o tipo de conta que deseja criar</Text>
                 </View>
-
               </View>
 
               {/* etapas */}
@@ -270,58 +244,38 @@ export default function CadastroScreen() {
 
                 {/* etapa ativa */}
                 <View style={styles.stepItem}>
-
                   <View style={styles.stepActive}>
                     <Text style={styles.stepActiveText}>1</Text>
                   </View>
-
-                  <Text style={styles.stepLabelActive}>
-                    Tipo de conta
-                  </Text>
+                  <Text style={styles.stepLabelActive}>Tipo de conta</Text>
                 </View>
-
                 <View style={styles.stepLine} />
 
                 {/* etapa */}
                 <View style={styles.stepItem}>
-
                   <View style={styles.stepInactive}>
                     <Text style={styles.stepInactiveText}>2</Text>
                   </View>
-
-                  <Text style={styles.stepLabel}>
-                    Dados pessoais
-                  </Text>
+                  <Text style={styles.stepLabel}>Dados pessoais</Text>
                 </View>
-
                 <View style={styles.stepLine} />
 
                 {/* etapa */}
                 <View style={styles.stepItem}>
-
                   <View style={styles.stepInactive}>
                     <Text style={styles.stepInactiveText}>3</Text>
                   </View>
-
-                  <Text style={styles.stepLabel}>
-                    Dados de acesso
-                  </Text>
+                  <Text style={styles.stepLabel}>Dados de acesso</Text>
                 </View>
-
                 <View style={styles.stepLine} />
 
                 {/* etapa */}
                 <View style={styles.stepItem}>
-
                   <View style={styles.stepInactive}>
                     <Text style={styles.stepInactiveText}>4</Text>
                   </View>
-
-                  <Text style={styles.stepLabel}>
-                    Concluir
-                  </Text>
+                  <Text style={styles.stepLabel}>Concluir</Text>
                 </View>
-
               </View>
 
               {/* opção de estagiário */}
@@ -346,17 +300,12 @@ export default function CadastroScreen() {
 
                 {/* textos */}
                 <View style={styles.optionTextArea}>
-
-                  <Text style={styles.optionTitle}>
-                    Estagiário
-                  </Text>
+                  <Text style={styles.optionTitle}>Estagiário</Text>
 
                   <Text style={styles.optionDescription}>
                     Acesso para gerenciar atendimentos e pacientes sob supervisão.
                   </Text>
-
                 </View>
-
               </TouchableOpacity>
 
               {/* botão continuar */}
@@ -365,9 +314,7 @@ export default function CadastroScreen() {
                 activeOpacity={0.85}
                 onPress={() => router.push('/dados-pessoais')}
               >
-                <Text style={styles.primaryButtonText}>
-                  Continuar
-                </Text>
+                <Text style={styles.primaryButtonText}>Continuar</Text>
               </TouchableOpacity>
             </View>
           </View>

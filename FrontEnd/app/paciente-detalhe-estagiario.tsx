@@ -242,7 +242,7 @@ export default function PacienteDetalheScreen() {
                 />
 
                 {/* título da seção */}
-                <Text style={styles.sectionTitle}> Resumo do acompanhamento</Text>
+                <Text style={styles.sectionTitle}>Resumo do acompanhamento</Text>
               </View>
 
               {/* informações resumidas do acompanhamento */}

@@ -60,9 +60,7 @@ export default function AdminDashboardScreen() {
               {/* textos do logo */}
               <View>
                 <Text style={styles.logoText}>SEP</Text>
-                <Text style={styles.logoSub}>
-                  Clínica de Psicologia
-                </Text>
+                <Text style={styles.logoSub}>Clínica de Psicologia</Text>
               </View>
             </View>
 
@@ -70,12 +68,8 @@ export default function AdminDashboardScreen() {
             <View style={styles.menuArea}>
 
               {/* item do menu: administrador (ativo por padrão) */}
-              <TouchableOpacity
-                style={[
-                  styles.menuItem,
-                  styles.menuActive,
-                ]}
-              >
+              <TouchableOpacity style={[styles.menuItem, styles.menuActive,]}>
+
                 {/* ícone do menu administrador */}
                 <Image
                   source={require('../../assets/images/administrador.png')}
@@ -83,20 +77,11 @@ export default function AdminDashboardScreen() {
                 />
 
                 {/* texto do item administrador */}
-                <Text
-                  style={[
-                    styles.menuText,
-                    styles.menuTextActive,
-                  ]}
-                >
-                  Administrador
-                </Text>
+                <Text style={[styles.menuText, styles.menuTextActive,]}>Administrador</Text>
               </TouchableOpacity>
 
               {/* separador/label da seção do menu */}
-              <Text style={styles.menuLabel}>
-                GERENCIAMENTO
-              </Text>
+              <Text style={styles.menuLabel}>GERENCIAMENTO</Text>
 
               {/* item do menu: agendamentos */}
               <TouchableOpacity
@@ -110,9 +95,7 @@ export default function AdminDashboardScreen() {
                 />
 
                 {/* texto do item agendamentos */}
-                <Text style={styles.menuText}>
-                  Agendamentos
-                </Text>
+                <Text style={styles.menuText}>Agendamentos</Text>
               </TouchableOpacity>
 
               {/* item do menu: pacientes */}
@@ -127,9 +110,7 @@ export default function AdminDashboardScreen() {
                 />
 
                 {/* texto do item pacientes */}
-                <Text style={styles.menuText}>
-                  Pacientes
-                </Text>
+                <Text style={styles.menuText}>Pacientes</Text>
               </TouchableOpacity>
 
               {/* item do menu: salas */}
@@ -144,9 +125,7 @@ export default function AdminDashboardScreen() {
                 />
 
                 {/* texto do item salas */}
-                <Text style={styles.menuText}>
-                  Salas
-                </Text>
+                <Text style={styles.menuText}>Salas</Text>
               </TouchableOpacity>
 
               {/* item do menu: cancelamentos */}
@@ -161,9 +140,22 @@ export default function AdminDashboardScreen() {
                 />
 
                 {/* texto do item cancelamentos */}
-                <Text style={styles.menuText}>
-                  Cancelamentos
-                </Text>
+                <Text style={styles.menuText}>Cancelamentos</Text>
+              </TouchableOpacity>
+
+              {/* item do menu: solicitacoes de reagendamentos */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/solicitacao-reagendamentos')}
+              >
+                {/* ícone de reagendamento */}
+                <Image
+                  source={require('../../assets/images/reagendamento.png')}
+                  style={styles.menuIcon}
+                />
+
+                {/* texto do item cancelamentos */}
+                <Text style={styles.menuText}>Pedidos reagendamento</Text>
               </TouchableOpacity>
 
               {/* item do menu: cadastro de estagiário */}
@@ -178,9 +170,7 @@ export default function AdminDashboardScreen() {
                 />
 
                 {/* texto do item cadastrar estagiário */}
-                <Text style={styles.menuText}>
-                  Cadastrar Estagiário
-                </Text>
+                <Text style={styles.menuText}>Cadastrar Estagiário</Text>
               </TouchableOpacity>
 
               {/* item do menu: relatório de atendimentos */}
@@ -195,9 +185,7 @@ export default function AdminDashboardScreen() {
                 />
 
                 {/* texto do item relatório */}
-                <Text style={styles.menuText}>
-                  Relatório Atendimentos
-                </Text>
+                <Text style={styles.menuText}>Relatório Atendimentos</Text>
               </TouchableOpacity>
 
               {/* item do menu: perfil */}
@@ -212,11 +200,8 @@ export default function AdminDashboardScreen() {
                 />
 
                 {/* texto do item perfil */}
-                <Text style={styles.menuText}>
-                  Perfil
-                </Text>
+                <Text style={styles.menuText}>Perfil</Text>
               </TouchableOpacity>
-
             </View>
           </View>
         )}

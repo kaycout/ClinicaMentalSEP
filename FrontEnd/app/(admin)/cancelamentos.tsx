@@ -89,11 +89,8 @@ export default function CancelamentosScreen() {
               <View>
                 {/* nome da clínica */}
                 <Text style={styles.logoText}>SEP</Text>
-
                 {/* subtítulo da clínica */}
-                <Text style={styles.logoSub}>
-                  Clínica de Psicologia
-                </Text>
+                <Text style={styles.logoSub}>Clínica de Psicologia</Text>
               </View>
             </View>
 
@@ -110,15 +107,11 @@ export default function CancelamentosScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Administrador
-                </Text>
+                <Text style={styles.menuText}>Administrador</Text>
               </TouchableOpacity>
 
               {/* separador de seção do menu */}
-              <Text style={styles.menuLabel}>
-                GERENCIAMENTO
-              </Text>
+              <Text style={styles.menuLabel}>GERENCIAMENTO</Text>
 
               {/* item: agendamentos */}
               <TouchableOpacity
@@ -130,9 +123,7 @@ export default function CancelamentosScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Agendamentos
-                </Text>
+                <Text style={styles.menuText}>Agendamentos</Text>
               </TouchableOpacity>
 
               {/* item: pacientes */}
@@ -145,9 +136,7 @@ export default function CancelamentosScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Pacientes
-                </Text>
+                <Text style={styles.menuText}>Pacientes</Text>
               </TouchableOpacity>
 
               {/* item: salas */}
@@ -160,31 +149,31 @@ export default function CancelamentosScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Salas
-                </Text>
+                <Text style={styles.menuText}>Salas</Text>
               </TouchableOpacity>
 
               {/* item ativo: cancelamentos e remarcações */}
-              <TouchableOpacity
-                style={[
-                  styles.menuItem,
-                  styles.menuActive,
-                ]}
-              >
+              <TouchableOpacity style={[styles.menuItem, styles.menuActive,]}>
+
                 <Image
                   source={require('../../assets/images/cancelamento.png')}
                   style={styles.menuIcon}
                 />
 
-                <Text
-                  style={[
-                    styles.menuText,
-                    styles.menuTextActive,
-                  ]}
-                >
-                  Cancelamentos
-                </Text>
+                <Text style={[styles.menuText, styles.menuTextActive,]}>Cancelamentos</Text>
+              </TouchableOpacity>
+
+              {/* item: solicitacao de reagendamentos */}
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => router.push('/solicitacao-reagendamentos')}
+              >
+                <Image
+                  source={require('../../assets/images/reagendamento.png')}
+                  style={styles.menuIcon}
+                />
+
+                <Text style={styles.menuText}>Pedidos reagendamento</Text>
               </TouchableOpacity>
 
               {/* item: cadastro de estagiário */}
@@ -197,9 +186,7 @@ export default function CancelamentosScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Cadastrar Estagiário
-                </Text>
+                <Text style={styles.menuText}>Cadastrar Estagiário</Text>
               </TouchableOpacity>
 
               {/* item do menu: relatório de atendimentos */}
@@ -214,9 +201,7 @@ export default function CancelamentosScreen() {
                 />
 
                 {/* texto do item relatório */}
-                <Text style={styles.menuText}>
-                  Relatório Atendimentos
-                </Text>
+                <Text style={styles.menuText}>Relatório Atendimentos</Text>
               </TouchableOpacity>
 
               {/* item: perfil */}
@@ -229,19 +214,14 @@ export default function CancelamentosScreen() {
                   style={styles.menuIcon}
                 />
 
-                <Text style={styles.menuText}>
-                  Perfil
-                </Text>
+                <Text style={styles.menuText}>Perfil</Text>
               </TouchableOpacity>
             </View>
           </View>
         )}
 
-        {/* conteúdo principal com scroll da tela */}
-        <ScrollView
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
+        {/* área principal do conteúdo */}
+        <ScrollView contentContainerStyle={styles.scrollContent}>
 
           {/* elementos decorativos de fundo (círculos) */}
           <View style={styles.decorCircleOne} />
@@ -253,30 +233,21 @@ export default function CancelamentosScreen() {
 
             <View>
               {/* título da página */}
-              <Text style={styles.title}>
-                Cancelamentos e Remarcações
-              </Text>
+              <Text style={styles.title}>Cancelamentos e Remarcações</Text>
 
               {/* subtítulo explicativo */}
-              <Text style={styles.subtitle}>
-                Gerencie solicitações e acompanhe os status.
-              </Text>
+              <Text style={styles.subtitle}>Gerencie solicitações e acompanhe os status.</Text>
             </View>
-
           </View>
 
           {/* card principal de conteúdo */}
           <View style={styles.sectionCard}>
 
             {/* título da seção */}
-            <Text style={styles.sectionTitle}>
-              Solicitações
-            </Text>
+            <Text style={styles.sectionTitle}>Solicitações</Text>
 
             {/* subtítulo da seção */}
-            <Text style={styles.sectionSubtitle}>
-              Lista de pedidos de cancelamento e remarcação
-            </Text>
+            <Text style={styles.sectionSubtitle}>Lista de pedidos de cancelamento e remarcação</Text>
 
             {/* lista de solicitações */}
             {solicitacoes.map((item, index) => (
