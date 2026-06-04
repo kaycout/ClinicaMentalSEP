@@ -106,7 +106,7 @@ export default function SalasScreen() {
         )}
 
         {/* área principal do conteúdo */}
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+        <ScrollView contentContainerStyle={styles.contentMobile}>
 
           {/* header */}
           <View style={styles.header}>
@@ -279,6 +279,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 34,
     paddingTop: 48,
     paddingBottom: 28,
+  },
+
+  // conteúdo no mobile
+  contentMobile: {
+    paddingHorizontal: 16,
+    paddingTop: 48,
   },
 
   // cabecalho da tela

@@ -166,7 +166,7 @@ export default function PacientesScreen() {
         )}
 
         {/* área principal do conteúdo */}
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+        <ScrollView contentContainerStyle={styles.contentMobile}>
 
           {/* título da página */}
           <View style={[styles.topRow, isMobile && styles.topRowMobile]}>
@@ -555,7 +555,7 @@ const styles = StyleSheet.create({
   },
 
   // conteúdo principal
-  scrollContent: {
+  content: {
     flex: 1,
     paddingHorizontal: 34,
     paddingTop: 30,
@@ -571,7 +571,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 48,
   },
-
+  
   // linha superior
   topRow: {
     flexDirection: 'row',

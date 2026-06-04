@@ -149,7 +149,7 @@ export default function NotificacoesScreen() {
         )}
 
         {/* área principal do conteúdo */}
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+        <ScrollView contentContainerStyle={styles.contentMobile}>
                 
           {/* aqui é colocado elementos decorativos no fundo só pra estética */}
           <View style={styles.decorCircleOne} />
@@ -407,6 +407,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 42,
     paddingBottom: 34,
+  },
+
+  // conteúdo no mobile
+  contentMobile: {
+    paddingHorizontal: 16,
+    paddingTop: 48,
   },
 
   // a primeira bolinha decorativa do fundo

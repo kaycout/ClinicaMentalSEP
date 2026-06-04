@@ -185,7 +185,7 @@ export default function AgendaScreen() {
         )}
 
         {/* área principal do conteúdo */}
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+        <ScrollView contentContainerStyle={styles.contentMobile}>
                 
           {/* topo da agenda */}
           <View style={[styles.topRow, isMobile && styles.topRowMobile]}>
@@ -629,7 +629,7 @@ const styles = StyleSheet.create({
   },
 
   // conteúdo principal da tela
-    scrollContent: {
+    content: {
     flex: 1,
     paddingHorizontal: 34,
     paddingTop: 30,
