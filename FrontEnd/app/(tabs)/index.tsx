@@ -1,5 +1,4 @@
 // arquivo app/(tabs)/index.tsx
-// aqui eu organizei a tela de agenda e deixei responsiva para mobile e desktop
 // essa tela mostra os atendimentos do dia e permite ações do estagiário
 
 // importação principal do React, pois é necessário para criar componentes React Native.

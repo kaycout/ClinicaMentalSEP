@@ -1,5 +1,4 @@
 // arquivo app/(tabs)/notificacoes.tsx
-// aqui foi organizado essa tela e explicado tudo como foi pensado no desenvolvimento
 
 // importação principal do React, pois é necessário para criar componentes React Native.
 import React from 'react';
