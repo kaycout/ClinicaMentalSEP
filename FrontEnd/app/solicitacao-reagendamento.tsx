@@ -43,6 +43,7 @@ export default function SolicitacaoReagendamentoScreen() {
   const isMobile = width < 900;
 
   const [motivo, setMotivo] = useState(''); // motivo do reagendamento
+  const [estagiario, setEstagiario] = useState(''); // estagiario que solicitou reagendamento
   const [dataAtual, setDataAtual] = useState(''); // data atual da consulta
   const [novaData, setNovaData] = useState(''); // nova data desejada
   const [horario, setHorario] = useState(''); // novo horário escolhido
@@ -90,6 +91,21 @@ return (
                 <Text style={styles.cardSubtitle}>
                   Preencha os dados abaixo para enviar a solicitação ao administrador.
                 </Text>
+
+                {/* campo estagiario */}
+                <View style={styles.field}>
+                  <Text style={styles.label}>
+                    Estagiário
+                  </Text>
+
+                  <TextInput
+                    value={dataAtual}
+                    onChangeText={setEstagiario}
+                    placeholder="Nome do estagiário"
+                    placeholderTextColor="#8B9A97"
+                    style={styles.input}
+                  />
+                </View>
 
                 {/* campo data atual */}
                 <View style={styles.field}>
@@ -163,9 +179,7 @@ return (
                     color="#FFFFFF"
                   />
 
-                  <Text style={styles.buttonText}>
-                    Enviar solicitação
-                  </Text>
+                  <Text style={styles.buttonText}>Enviar solicitação</Text>
                 </TouchableOpacity>
               </>
             ) : (
@@ -181,21 +195,17 @@ return (
 
                 {/* mensagem de sucesso */}
                 <Text style={styles.successTitle}>
-                  Solicitação enviada!
-                </Text>
+                  Solicitação enviada!</Text>
 
                 <Text style={styles.successText}>
-                  O administrador irá analisar o pedido de reagendamento.
-                </Text>
+                  O administrador irá analisar o pedido de reagendamento.</Text>
 
                 {/* botão voltar */}
                 <TouchableOpacity
                   style={styles.backHomeButton}
                   onPress={() => router.push('/(tabs)')}
                 >
-                  <Text style={styles.backHomeText}>
-                    Voltar para agenda
-                  </Text>
+                  <Text style={styles.backHomeText}>Voltar para agenda</Text>
                 </TouchableOpacity>
               </>
             )}

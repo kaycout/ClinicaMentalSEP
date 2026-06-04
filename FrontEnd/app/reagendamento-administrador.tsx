@@ -191,10 +191,10 @@ export default function ReagendamentoScreen() {
             <Text style={styles.menuText}>Cancelamentos</Text>
           </TouchableOpacity>
 
-          {/* solicitacoes de reagendamentos*/}
+          {/* pedidos de reagendamentos*/}
           <TouchableOpacity
             style={styles.menuItem}
-            onPress={() => router.push('/solicitacao-reagendamento')}
+            onPress={() => router.push('/pedidos-reagendamentos')}
           >
             <Image
               source={require('../assets/images/reagendamento.png')}
@@ -302,9 +302,7 @@ export default function ReagendamentoScreen() {
               <View style={[styles.field, isDesktop && styles.fieldDesktop]}>
 
                 {/* label do campo */}
-                <Text style={styles.label}>
-                  Paciente
-                </Text>
+                <Text style={styles.label}>Paciente</Text>
 
                 {/* input para digitar o nome */}
                 <TextInput
@@ -320,7 +318,7 @@ export default function ReagendamentoScreen() {
               <View style={[ styles.field, isDesktop && styles.fieldDesktop,]}>
 
                 {/* texto do label do campo */}
-                <Text style={styles.label}>Data</Text>
+                <Text style={styles.label}>Nova Data</Text>
 
                 {/* verifica se está rodando na web */}
                 {Platform.OS === 'web' ? (

@@ -322,11 +322,11 @@ export default function AdminCalendarScreen() {
                 <Text style={styles.menuText}>Cancelamentos</Text>
               </TouchableOpacity>
 
-              {/* item de menu: solicitacao reagendamentos */}
+              {/* item de menu: pedidos reagendamentos */}
               {/* solicitacoes de estagiario ao administrador de reagendamentos de pacientes */}
               <TouchableOpacity
                 style={styles.menuItem}
-                onPress={() => router.push('/solicitacao-reagendamento')}
+                onPress={() => router.push('/pedidos-reagendamentos')}
               >
                 <Image
                   source={require('../assets/images/reagendamento.png')}
