@@ -255,7 +255,7 @@ export default function PacientesAdminScreen() {
   )}
 
         {/* área principal do conteúdo */}
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+        <ScrollView contentContainerStyle={styles.contentMobile}>
         
           {/* círculos decorativos do fundo */}
           <View style={styles.decorCircleOne} />
@@ -493,6 +493,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 42,
     paddingBottom: 34,
+  },
+
+  // conteúdo no mobile
+  contentMobile: {
+    paddingHorizontal: 16,
+    paddingTop: 48,
   },
 
   // círculo decorativo grande da esquerda

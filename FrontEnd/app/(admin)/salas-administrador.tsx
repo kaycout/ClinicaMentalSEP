@@ -191,7 +191,7 @@ export default function SalasAdminScreen() {
         )}
 
         {/* área principal do conteúdo */}
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+        <ScrollView contentContainerStyle={styles.contentMobile}>
 
           {/* decoração */}
           <View style={styles.decorCircleOne} />
@@ -391,6 +391,12 @@ const styles = StyleSheet.create({
     paddingBottom: 34,
   },
 
+  // conteúdo no mobile
+  contentMobile: {
+    paddingHorizontal: 16,
+    paddingTop: 48,
+  },
+
   // círculo decorativo grande do lado esquerdo
   decorCircleOne: {
     position: 'absolute',
@@ -518,7 +524,7 @@ const styles = StyleSheet.create({
 
   // container dos cards
   cardsWrap: {
-    gap: 14,
+    gap: 12,
   },
 
   // organização dos cards no desktop

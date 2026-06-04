@@ -221,7 +221,7 @@ export default function CancelamentosScreen() {
         )}
 
         {/* área principal do conteúdo */}
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+        <ScrollView contentContainerStyle={styles.contentMobile}>
 
           {/* elementos decorativos de fundo (círculos) */}
           <View style={styles.decorCircleOne} />
@@ -413,6 +413,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 28,
     paddingTop: 44,
+  },
+
+  // conteúdo no mobile
+  contentMobile: {
+    paddingHorizontal: 16,
+    paddingTop: 48,
   },
 
   // círculo decorativo

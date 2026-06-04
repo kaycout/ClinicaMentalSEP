@@ -17,6 +17,8 @@ import {
   ScrollView,
   // cria alertas
   Alert,
+  // hook que pega largura da tela
+  useWindowDimensions,
 } from 'react-native';
 
 // importação do router
@@ -24,6 +26,12 @@ import { useRouter } from 'expo-router';
 
 // função principal da tela
 export default function RelatorioAtendimentos() {
+
+  // largura da tela
+const { width } = useWindowDimensions();
+
+// verifica se é desktop
+const isDesktop = width >= 900;
 
   // hook de navegação
   const router = useRouter();
@@ -43,6 +51,24 @@ export default function RelatorioAtendimentos() {
     // abertura no Excel
   };
 
+  // bloqueia acesso mobile
+if (!isDesktop) {
+  return (
+
+    <View style={styles.mobileContainer}>
+
+      {/* ícone */}
+      <Text style={styles.mobileIcon}>💻</Text>
+
+      {/* título */}
+      <Text style={styles.mobileTitle}>Disponível apenas no desktop</Text>
+
+      {/* descrição */}
+      <Text style={styles.mobileText}>Os relatórios só podem ser gerados na versão desktop do sistema.</Text>
+    </View>
+  );
+}
+
   // retorno visual da tela
   return (
 
@@ -60,11 +86,8 @@ export default function RelatorioAtendimentos() {
 
           {/* textos do logo */}
           <View>
-
             {/* nome da clínica */}
             <Text style={styles.logoText}>SEP</Text>
-
-            {/* subtítulo */}
             <Text style={styles.logoSub}>Clínica de Psicologia</Text>
           </View>
         </View>
@@ -87,16 +110,9 @@ export default function RelatorioAtendimentos() {
             />
 
             {/* texto do menu */}
-            <Text
-              style={[
-                styles.menuText,
-                styles.menuTextActive,
-              ]}
-            >
-              Relatórios
-            </Text>
+            <Text style={[styles.menuText, styles.menuTextActive,]}>
+              Relatórios</Text>
           </TouchableOpacity>
-
         </View>
       </View>
 
@@ -331,5 +347,37 @@ const styles = StyleSheet.create({
     fontSize: 16, // tamanho da fonte
     fontWeight: 'bold', // negrito
     textAlign: 'center', // alinhamento centralizado
+  },
+
+  // tela exibida no mobile
+  mobileContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 30,
+    backgroundColor: '#F5F7FB',
+  },
+
+  // ícone
+  mobileIcon: {
+    fontSize: 70,
+    marginBottom: 20,
+  },
+
+  // título
+  mobileTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#111827',
+    textAlign: 'center',
+    marginBottom: 12,
+  },
+
+  // texto
+  mobileText: {
+    fontSize: 15,
+    color: '#6B7280',
+    textAlign: 'center',
+    lineHeight: 22,
   },
 });

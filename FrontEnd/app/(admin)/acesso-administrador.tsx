@@ -207,7 +207,7 @@ export default function AdminDashboardScreen() {
         )}
 
         {/* conteúdo principal da tela, responsável por envolver todo o layout visível */}
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+        <ScrollView contentContainerStyle={styles.contentMobile}>
 
           {/* círculos decorativos de fundo (efeito visual apenas, não interativos) */}
           <View style={styles.decorCircleOne} />
@@ -793,6 +793,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 28,
     paddingTop: 44,
+  },
+
+  // conteúdo no mobile
+  contentMobile: {
+    paddingHorizontal: 16,
+    paddingTop: 48,
   },
 
   // círculo decorativo grande da esquerda

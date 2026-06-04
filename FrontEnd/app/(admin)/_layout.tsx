@@ -135,7 +135,27 @@ export default function TabLayout() {
         }}
       />
 
-      {/* quinta aba: perfil */}
+      {/* quinta aba: relatorio */}
+      <Tabs.Screen
+        name="relatorio-atendimentos"
+        options={{
+          title: 'Relatório',
+
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={require('../../assets/images/relatorio2.png')}
+              style={{
+                width: 24,
+                height: 24,
+                tintColor: color,
+                resizeMode: 'contain',
+              }}
+            />
+          ),
+        }}
+      />
+
+      {/* sexta aba: perfil */}
       <Tabs.Screen
         name="perfil-administrador"
         options={{
