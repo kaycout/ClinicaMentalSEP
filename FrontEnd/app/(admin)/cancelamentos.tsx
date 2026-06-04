@@ -163,10 +163,10 @@ export default function CancelamentosScreen() {
                 <Text style={[styles.menuText, styles.menuTextActive,]}>Cancelamentos</Text>
               </TouchableOpacity>
 
-              {/* item: solicitacao de reagendamentos */}
+              {/* item: pedidos de reagendamentos */}
               <TouchableOpacity
                 style={styles.menuItem}
-                onPress={() => router.push('/solicitacao-reagendamentos')}
+                onPress={() => router.push('/pedidos-reagendamentos')}
               >
                 <Image
                   source={require('../../assets/images/reagendamento.png')}

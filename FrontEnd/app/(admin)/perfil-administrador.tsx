@@ -141,10 +141,10 @@ export default function PerfilScreen() {
                 <Text style={styles.menuText}>Cancelamentos</Text>
               </TouchableOpacity>
 
-              {/* solicitacoes de reagendamento */}
+              {/* pedidos de reagendamento */}
               <TouchableOpacity
                 style={styles.menuItem}
-                onPress={() => router.push('/solicitacao-reagendamento')}
+                onPress={() => router.push('/pedidos-reagendamentos')}
               >
                 <Image
                   source={require('../../assets/images/reagendamento.png')}

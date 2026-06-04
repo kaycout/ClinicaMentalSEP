@@ -167,10 +167,10 @@ export default function CadastroScreen() {
                 <Text style={styles.menuText}>Cancelamentos</Text>
               </TouchableOpacity>
 
-              {/* item de menu: solicitacoes de reagendamentos */}
+              {/* item de menu: pedidos de reagendamentos */}
               <TouchableOpacity
                 style={styles.menuItem}
-                onPress={() => router.push('/solicitacao-reagendamento')}
+                onPress={() => router.push('/pedidos-reagendamentos')}
               >
                 <Image
                   source={require('../../assets/images/reagendamento.png')}

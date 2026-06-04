@@ -142,7 +142,7 @@ export default function SalasAdminScreen() {
 
               <TouchableOpacity
                 style={styles.menuItem}
-                onPress={() => router.push('/solicitacao-reagendamentos')}
+                onPress={() => router.push('/pedidos-reagendamentos')}
               >
                 <Image
                   source={require('../../assets/images/reagendamento.png')}
