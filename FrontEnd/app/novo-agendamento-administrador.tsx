@@ -24,7 +24,6 @@ import {
   // hook que pega largura e altura da tela em tempo real
   // usado para responsividade entre mobile e desktop 
   useWindowDimensions,
-
 } from 'react-native';
 
 // router pra navegação entre telas
@@ -532,7 +531,7 @@ export default function NovoAgendamentoAdministradorScreen() {
               </TouchableOpacity>
 
               {/* botão salvar */}
-              <TouchableOpacity style={styles.saveButton} onPress={() => router.push('/agendamento-sucesso-estagiario')}>
+              <TouchableOpacity style={styles.saveButton} onPress={() => router.push('/agendamento-sucesso-administrador')}>
 
                 {/* ícone do botão salvar */}
                 <Ionicons
@@ -908,6 +907,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     fontSize: 14,
     color: '#17262F',
+    justifyContent: 'center',
   },
 
     inputContent: {

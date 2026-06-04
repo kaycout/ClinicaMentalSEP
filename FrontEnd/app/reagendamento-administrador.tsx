@@ -320,50 +320,49 @@ export default function ReagendamentoScreen() {
                 {/* texto do label do campo */}
                 <Text style={styles.label}>Nova Data</Text>
 
-                {/* verifica se está rodando na web */}
-                {Platform.OS === 'web' ? (
+              {/* verifica se está rodando na versão web */}
+              {Platform.OS === 'web' ? (
 
-                  /* input simples de data para web */
-                  <TextInput style={styles.input} value={novaData} onChangeText={setNovaData} placeholder="dd/mm/aaaa"/>
+                /* campo simples para digitar a data manualmente no navegador */
+                <TextInput
+                  style={styles.input}
+                  value={novaData}
+                  onChangeText={setNovaData}
+                  placeholder="dd/mm/aaaa"
+                  placeholderTextColor="#94A3B8"
+                />
 
-                ) : (
-                  <>
+              ) : (
 
-                    {/* botão que abre o calendário */}
-                    <TouchableOpacity
-                      style={styles.input}
-                      onPress={() => setShowDatePicker(true)}
-                    >
+                <>
+                  {/* botão que abre o calendário nativo do celular */}
+                  <TouchableOpacity
+                    style={styles.inputBox}
+                    onPress={() => setShowDatePicker(true)}
+                  >
 
-                      {/* conteúdo interno do botão */}
-                      <View style={styles.input}>
+                    {/* ícone ilustrativo de calendário */}
+                    <Ionicons name="calendar-outline" size={18} color="#7E8D9B" />
 
-                        {/* ícone de calendário */}
-                        <Ionicons
-                          name="calendar-outline"
-                          size={18}
-                          color="#7E8D9B"
-                        />
+                    {/* exibe a data selecionada ou uma mensagem padrão */}
+                    <Text style={styles.dateText}>
+                      {novaData || 'Selecione uma data'}
+                    </Text>
 
-                        {/* texto exibindo a data selecionada */}
-                        <Text style={styles.dateText}>
-                          {novaData}
-                        </Text>
+                  </TouchableOpacity>
 
-                      </View>
-                    </TouchableOpacity>
+                  {/* exibe o calendário apenas quando o usuário clicar no campo */}
+                  {showDatePicker && (
 
-                    {/* exibe o calendário somente se showDatePicker for true */}
-                    {showDatePicker && (
-                      <DateTimePicker
-                        value={selectedDate}
-                        mode="date"
-                        display="default"
-                        onChange={onChangeDate}
-                      />
-                    )}
-                  </>
-                )}
+                    <DateTimePicker
+                      value={selectedDate} // data atualmente selecionada
+                      mode="date" // exibe somente seleção de data
+                      display="default" // utiliza o estilo padrão do sistema
+                      onChange={onChangeDate} // atualiza a data após seleção
+                    />
+                  )}
+                </>
+              )}
               </View>
 
               {/* horário */}
@@ -456,12 +455,16 @@ export default function ReagendamentoScreen() {
 
                 {/* texto do botão cancelar */}
                 <Text style={styles.cancelText}>Cancelar</Text>
-
               </TouchableOpacity>
 
-              {/* botão principal */}
+              {/* botão principal que salva o reagendamento */}
               <TouchableOpacity
+
+                // estilo do botão
                 style={styles.saveButton}
+
+                // navega para a tela de sucesso
+                onPress={() => router.push('/reagendamento-sucesso')}
               >
 
                 {/* ícone de confirmação */}
@@ -471,15 +474,8 @@ export default function ReagendamentoScreen() {
                   color="#FFFFFF"
                 />
 
-                {/* botão interno que salva o reagendamento */}
-                <TouchableOpacity
-                style={styles.saveButton}
-                onPress={() => router.push('/reagendamento-sucesso')}
-              >
-
-                {/* texto do botão salvar */}
+                {/* texto do botão */}
                 <Text style={styles.saveText}>Salvar reagendamento</Text>
-              </TouchableOpacity>
               </TouchableOpacity>
             </View>
           </View>

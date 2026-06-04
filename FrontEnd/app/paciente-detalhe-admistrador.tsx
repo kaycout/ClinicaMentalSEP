@@ -219,7 +219,7 @@ export default function PacienteDetalheScreen() {
   )}
 
       {/* área principal do conteúdo da tela */}
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView contentContainerStyle={styles.contentMobile}>
 
         {/* círculo decorativo grande do lado esquerdo */}
         <View style={styles.decorCircleOne} />
@@ -726,6 +726,12 @@ const styles = StyleSheet.create({
     paddingBottom: 34,
   },
 
+  // conteúdo no mobile
+  contentMobile: {
+    paddingHorizontal: 16,
+    paddingTop: 48,
+  },
+
   // círculo decorativo grande da esquerda
   decorCircleOne: {
     position: 'absolute',
@@ -835,7 +841,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 14,
-    marginBottom: 16,
+    marginBottom: 10,
   },
 
   // avatar circular do paciente
@@ -1087,6 +1093,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     overflow: 'hidden',
+    minHeight: 48,
   },
 
   // picker
