@@ -418,7 +418,7 @@ const styles = StyleSheet.create({
   // conteúdo no mobile
   contentMobile: {
     paddingHorizontal: 16,
-    paddingTop: 48,
+    paddingTop: 40,
   },
 
   // círculo decorativo
