@@ -85,7 +85,7 @@ export default function SolicitacaoReagendamentosScreen() {
         </View>
 
         {/* conteúdo principal*/}
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+        <ScrollView contentContainerStyle={styles.contentMobile}>
 
           {/* cabeçalho */}
           <View style={styles.header}>
@@ -226,6 +226,12 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     padding: 35,
+  },
+
+  // conteúdo no mobile
+  contentMobile: {
+    paddingHorizontal: 16,
+    paddingTop: 40,
   },
 
   header: {

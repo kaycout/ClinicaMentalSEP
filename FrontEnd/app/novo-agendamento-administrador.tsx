@@ -258,7 +258,7 @@ export default function NovoAgendamentoAdministradorScreen() {
 
     
     {/* área principal do conteúdo */}
-    <ScrollView contentContainerStyle={styles.scrollContent}>
+    <ScrollView contentContainerStyle={styles.contentMobile}>
             
       {/* bolinhas do fundo */}
       <View style={styles.decorCircleOne} />
@@ -677,6 +677,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 28,
     paddingBottom: 32,
+  },
+
+  // conteúdo no mobile
+  contentMobile: {
+    paddingHorizontal: 16,
+    paddingTop: 30,
   },
 
   scrollContentDesktop: {

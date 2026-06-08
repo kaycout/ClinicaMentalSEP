@@ -251,10 +251,7 @@ export default function ReagendamentoScreen() {
     )}
 
         {/* conteúdo */}
-        <ScrollView
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
+        <ScrollView contentContainerStyle={styles.contentMobile}>
 
           {/* topo */}
           <View style={styles.header}>
@@ -620,6 +617,12 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingHorizontal: 28,
     paddingVertical: 42,
+  },
+
+  // conteúdo no mobile
+  contentMobile: {
+    paddingHorizontal: 16,
+    paddingTop: 35,
   },
 
   // cabeçalho da página

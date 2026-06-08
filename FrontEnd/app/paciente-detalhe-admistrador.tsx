@@ -729,7 +729,7 @@ const styles = StyleSheet.create({
   // conteúdo no mobile
   contentMobile: {
     paddingHorizontal: 16,
-    paddingTop: 48,
+    paddingTop: 30,
   },
 
   // círculo decorativo grande da esquerda
@@ -1052,6 +1052,7 @@ const styles = StyleSheet.create({
     borderColor: '#E0E9E6',
     padding: 14,
     gap: 10,
+     marginTop: -6, 
   },
 
   // botão principal da tela
